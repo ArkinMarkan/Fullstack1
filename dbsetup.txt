@@ -1,0 +1,524 @@
+-- ===============================================
+-- MOVIE BOOKING APPLICATION - DATABASE SETUP
+-- ===============================================
+-- Complete MySQL Database Setup Script
+-- As per requirements documentation and backend implementation
+-- Date: December 16, 2025
+-- ===============================================
+
+-- STEP 1: CREATE DATABASE AND USER
+-- ===============================================
+
+-- Create the main database
+CREATE DATABASE IF NOT EXISTS moviebookingdb 
+    CHARACTER SET utf8mb4 
+    COLLATE utf8mb4_unicode_ci;
+
+-- Create application user with proper credentials (matching backend config)
+CREATE USER IF NOT EXISTS 'movieapp'@'localhost' IDENTIFIED BY 'MovieApp123!';
+
+-- Grant all privileges on moviebookingdb to the application user
+GRANT ALL PRIVILEGES ON moviebookingdb.* TO 'movieapp'@'localhost';
+
+-- Apply the privilege changes
+FLUSH PRIVILEGES;
+
+-- Switch to the moviebookingdb database
+USE moviebookingdb;
+
+-- ===============================================
+-- STEP 2: CREATE CORE TABLES
+-- ===============================================
+
+-- 2.1 Create Users Table (for US_01 - Registration and Login)
+-- ===============================================
+CREATE TABLE users (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50) NOT NULL COMMENT 'User first name',
+    last_name VARCHAR(50) NOT NULL COMMENT 'User last name',
+    email VARCHAR(100) NOT NULL UNIQUE COMMENT 'User email address - must be unique',
+    login_id VARCHAR(50) NOT NULL UNIQUE COMMENT 'User login ID - must be unique',
+    password VARCHAR(255) NOT NULL COMMENT 'Encrypted password using BCrypt',
+    contact_number VARCHAR(20) NOT NULL COMMENT 'User contact number',
+    role ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER' COMMENT 'User role for authorization',
+    account_non_expired BOOLEAN DEFAULT TRUE COMMENT 'Account expiration status',
+    account_non_locked BOOLEAN DEFAULT TRUE COMMENT 'Account lock status',
+    credentials_non_expired BOOLEAN DEFAULT TRUE COMMENT 'Credentials expiration status',
+    enabled BOOLEAN DEFAULT TRUE COMMENT 'Account enabled status',
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Account creation date',
+    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last modification date',
+    
+    -- Constraints for data validation
+    CONSTRAINT chk_email_format CHECK (email REGEXP '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+    CONSTRAINT chk_contact_format CHECK (contact_number REGEXP '^[0-9]{10,15}$'),
+    CONSTRAINT chk_login_id_length CHECK (CHAR_LENGTH(login_id) >= 3)
+) COMMENT = 'Users table for authentication and user management';
+
+-- 2.2 Create Movies Table (Core requirement - Composite Primary Key)
+-- ===============================================
+-- As per documentation: "Movie name and theatre name should be of composite primary key"
+CREATE TABLE movies (
+    -- Composite Primary Key fields (as per requirement)
+    movie_name VARCHAR(100) NOT NULL COMMENT 'Movie name - part of composite primary key',
+    theatre_name VARCHAR(100) NOT NULL COMMENT 'Theatre name - part of composite primary key',
+    
+    -- Additional fields for movie management
+    id BIGINT AUTO_INCREMENT UNIQUE COMMENT 'Auto-generated unique ID for internal use',
+    total_tickets INTEGER NOT NULL CHECK (total_tickets >= 1) COMMENT 'Total number of tickets allotted',
+    available_tickets INTEGER NOT NULL CHECK (available_tickets >= 0) COMMENT 'Currently available tickets',
+    status VARCHAR(20) DEFAULT 'BOOK_ASAP' COMMENT 'Booking status: BOOK_ASAP or SOLD_OUT',
+    
+    -- Extended movie information
+    description TEXT COMMENT 'Movie description',
+    genre VARCHAR(100) COMMENT 'Movie genre',
+    language VARCHAR(50) COMMENT 'Movie language',
+    duration INTEGER COMMENT 'Movie duration in minutes',
+    rating DECIMAL(3,1) COMMENT 'Movie rating (0.0 to 10.0)',
+    release_date TIMESTAMP COMMENT 'Movie release date',
+    ticket_price DECIMAL(10,2) DEFAULT 250.00 COMMENT 'Ticket price in INR',
+    poster_url VARCHAR(255) COMMENT 'Movie poster image URL',
+    
+    -- Audit fields
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Primary Key Constraint (Composite as per requirement)
+    PRIMARY KEY (movie_name, theatre_name),
+    
+    -- Data validation constraints
+    CONSTRAINT chk_status CHECK (status IN ('BOOK_ASAP', 'SOLD_OUT')),
+    CONSTRAINT chk_rating CHECK (rating >= 0 AND rating <= 10),
+    CONSTRAINT chk_available_tickets CHECK (available_tickets <= total_tickets),
+    CONSTRAINT chk_ticket_price CHECK (ticket_price >= 0)
+) COMMENT = 'Movies table with composite primary key (movie_name, theatre_name)';
+
+-- 2.3 Create Tickets Table (for US_03 - Book Tickets)
+-- ===============================================
+-- Foreign key relationship with Movies table as per requirement
+CREATE TABLE tickets (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    
+    -- Foreign key references to Movies table (composite key)
+    movie_name VARCHAR(100) NOT NULL COMMENT 'Movie name - foreign key reference',
+    theatre_name VARCHAR(100) NOT NULL COMMENT 'Theatre name - foreign key reference',
+    
+    -- Ticket booking details
+    number_of_tickets INTEGER NOT NULL CHECK (number_of_tickets >= 1 AND number_of_tickets <= 10) COMMENT 'Number of tickets booked',
+    seat_numbers JSON COMMENT 'Seat numbers in JSON format',
+    
+    -- User information
+    user_id BIGINT NOT NULL COMMENT 'User ID who booked the ticket',
+    user_login_id VARCHAR(50) NOT NULL COMMENT 'User login ID for easy reference',
+    
+    -- Booking details
+    booking_reference VARCHAR(20) UNIQUE NOT NULL COMMENT 'Unique booking reference',
+    status ENUM('CONFIRMED', 'CANCELLED', 'EXPIRED') DEFAULT 'CONFIRMED' COMMENT 'Ticket status',
+    total_amount DECIMAL(10,2) COMMENT 'Total amount paid',
+    booking_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP COMMENT 'Booking date and time',
+    
+    -- Audit fields
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    
+    -- Foreign key constraints (FK to movies table with composite key)
+    FOREIGN KEY (movie_name, theatre_name) REFERENCES movies(movie_name, theatre_name) 
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    -- FK to users table
+    FOREIGN KEY (user_id) REFERENCES users(id) 
+        ON DELETE RESTRICT ON UPDATE CASCADE,
+    
+    -- Additional constraints
+    CONSTRAINT chk_booking_ref_format CHECK (booking_reference REGEXP '^MB[0-9]{10}$')
+) COMMENT = 'Tickets table for movie bookings with foreign key to movies';
+
+-- 2.4 Create Movie Show Times Table (Additional functionality)
+-- ===============================================
+CREATE TABLE movie_show_times (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    movie_name VARCHAR(100) NOT NULL,
+    theatre_name VARCHAR(100) NOT NULL,
+    show_time TIME NOT NULL COMMENT 'Show time (e.g., 09:00, 12:00, 15:00)',
+    show_date DATE NOT NULL COMMENT 'Show date',
+    screen_number VARCHAR(10) COMMENT 'Screen number',
+    
+    -- Foreign key to movies table
+    FOREIGN KEY (movie_name, theatre_name) REFERENCES movies(movie_name, theatre_name) 
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    
+    -- Unique constraint to prevent duplicate shows
+    UNIQUE KEY unique_show (movie_name, theatre_name, show_date, show_time)
+) COMMENT = 'Movie show times for different theatres';
+
+-- ===============================================
+-- STEP 3: CREATE PERFORMANCE INDEXES
+-- ===============================================
+
+-- Indexes for Movies table
+CREATE INDEX idx_movies_status ON movies(status);
+CREATE INDEX idx_movies_genre ON movies(genre);
+CREATE INDEX idx_movies_language ON movies(language);
+CREATE INDEX idx_movies_rating ON movies(rating);
+CREATE INDEX idx_movies_name ON movies(movie_name);
+CREATE INDEX idx_movies_theatre ON movies(theatre_name);
+
+-- Indexes for Users table
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_login_id ON users(login_id);
+CREATE INDEX idx_users_role ON users(role);
+CREATE INDEX idx_users_enabled ON users(enabled);
+CREATE INDEX idx_users_contact ON users(contact_number);
+
+-- Indexes for Tickets table
+CREATE INDEX idx_tickets_user_id ON tickets(user_id);
+CREATE INDEX idx_tickets_user_login ON tickets(user_login_id);
+CREATE INDEX idx_tickets_movie_theatre ON tickets(movie_name, theatre_name);
+CREATE INDEX idx_tickets_booking_ref ON tickets(booking_reference);
+CREATE INDEX idx_tickets_status ON tickets(status);
+CREATE INDEX idx_tickets_booking_date ON tickets(booking_date);
+
+-- Indexes for audit columns (for reporting)
+CREATE INDEX idx_movies_created ON movies(created_date);
+CREATE INDEX idx_users_created ON users(created_date);
+CREATE INDEX idx_tickets_created ON tickets(created_date);
+
+-- ===============================================
+-- STEP 4: INSERT SAMPLE DATA (As per requirement)
+-- ===============================================
+-- Requirement: "2 movies with 2 theatres assigned"
+
+-- 4.1 Insert Sample Users
+-- ===============================================
+-- Admin user for US_04 (Admin functionality)
+INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role) VALUES
+('System', 'Administrator', 'admin@moviebooking.com', 'admin', 
+ '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', -- Password: admin123
+ '9999999999', 'ADMIN'),
+
+-- Regular user for testing
+('John', 'Doe', 'john.doe@example.com', 'john_doe', 
+ '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', -- Password: password123
+ '9876543210', 'USER'),
+
+-- Additional test user
+('Jane', 'Smith', 'jane.smith@example.com', 'jane_smith',
+ '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', -- Password: password123
+ '9876543211', 'USER');
+
+-- 4.2 Insert Sample Movies (2 movies x 2 theatres = 4 entries)
+-- ===============================================
+-- Movie 1: Avengers Endgame in 2 theatres
+INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, rating, ticket_price, poster_url) VALUES
+('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 
+ 'The final battle against Thanos in the epic conclusion to the Infinity Saga', 
+ 'Action/Sci-Fi', 'English', 181, 8.4, 350.00, 'https://example.com/avengers-endgame-poster.jpg'),
+
+('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP',
+ 'The final battle against Thanos in the epic conclusion to the Infinity Saga', 
+ 'Action/Sci-Fi', 'English', 181, 8.4, 400.00, 'https://example.com/avengers-endgame-poster.jpg'),
+
+-- Movie 2: RRR in 2 theatres
+('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP',
+ 'A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s',
+ 'Action/Drama', 'Telugu', 187, 8.1, 300.00, 'https://example.com/rrr-poster.jpg'),
+
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP',
+ 'A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s',
+ 'Action/Drama', 'Telugu', 187, 8.1, 280.00, 'https://example.com/rrr-poster.jpg');
+
+-- 4.3 Insert Sample Show Times
+-- ===============================================
+INSERT INTO movie_show_times (movie_name, theatre_name, show_time, show_date, screen_number) VALUES
+-- Avengers Endgame shows
+('Avengers Endgame', 'PVR Cinemas', '10:00:00', CURDATE(), 'Screen 1'),
+('Avengers Endgame', 'PVR Cinemas', '14:00:00', CURDATE(), 'Screen 1'),
+('Avengers Endgame', 'PVR Cinemas', '18:00:00', CURDATE(), 'Screen 1'),
+('Avengers Endgame', 'PVR Cinemas', '21:30:00', CURDATE(), 'Screen 1'),
+
+('Avengers Endgame', 'INOX Multiplex', '11:00:00', CURDATE(), 'Screen 2'),
+('Avengers Endgame', 'INOX Multiplex', '15:30:00', CURDATE(), 'Screen 2'),
+('Avengers Endgame', 'INOX Multiplex', '19:00:00', CURDATE(), 'Screen 2'),
+
+-- RRR shows
+('RRR', 'PVR Cinemas', '09:30:00', CURDATE(), 'Screen 3'),
+('RRR', 'PVR Cinemas', '13:30:00', CURDATE(), 'Screen 3'),
+('RRR', 'PVR Cinemas', '17:30:00', CURDATE(), 'Screen 3'),
+('RRR', 'PVR Cinemas', '21:00:00', CURDATE(), 'Screen 3'),
+
+('RRR', 'Cinepolis', '12:00:00', CURDATE(), 'Screen 1'),
+('RRR', 'Cinepolis', '16:00:00', CURDATE(), 'Screen 1'),
+('RRR', 'Cinepolis', '20:00:00', CURDATE(), 'Screen 1');
+
+-- ===============================================
+-- STEP 5: CREATE STORED PROCEDURES (Performance Enhancement)
+-- ===============================================
+
+DELIMITER //
+
+-- 5.1 Procedure to get movie statistics (for US_04 - Admin functionality)
+CREATE PROCEDURE GetMovieStatistics()
+READS SQL DATA
+DETERMINISTIC
+COMMENT 'Get comprehensive statistics for all movies'
+BEGIN
+    SELECT 
+        m.movie_name,
+        m.theatre_name,
+        m.total_tickets,
+        m.available_tickets,
+        (m.total_tickets - m.available_tickets) as booked_tickets,
+        ROUND((m.total_tickets - m.available_tickets) * 100.0 / m.total_tickets, 2) as occupancy_percentage,
+        m.status,
+        m.ticket_price,
+        COUNT(t.id) as total_bookings,
+        COALESCE(SUM(t.number_of_tickets), 0) as total_tickets_booked,
+        COALESCE(SUM(t.total_amount), 0) as total_revenue
+    FROM movies m
+    LEFT JOIN tickets t ON m.movie_name = t.movie_name 
+                        AND m.theatre_name = t.theatre_name 
+                        AND t.status = 'CONFIRMED'
+    GROUP BY m.movie_name, m.theatre_name, m.total_tickets, m.available_tickets, m.status, m.ticket_price
+    ORDER BY occupancy_percentage DESC;
+END //
+
+-- 5.2 Procedure to get user booking summary
+CREATE PROCEDURE GetUserBookingSummary(IN user_login_id VARCHAR(50))
+READS SQL DATA
+DETERMINISTIC
+COMMENT 'Get booking summary for a specific user'
+BEGIN
+    SELECT 
+        u.login_id,
+        u.first_name,
+        u.last_name,
+        u.email,
+        COUNT(t.id) as total_bookings,
+        COALESCE(SUM(t.number_of_tickets), 0) as total_tickets_booked,
+        SUM(CASE WHEN t.status = 'CONFIRMED' THEN t.number_of_tickets ELSE 0 END) as confirmed_tickets,
+        SUM(CASE WHEN t.status = 'CANCELLED' THEN t.number_of_tickets ELSE 0 END) as cancelled_tickets,
+        COALESCE(SUM(CASE WHEN t.status = 'CONFIRMED' THEN t.total_amount ELSE 0 END), 0) as total_spent
+    FROM users u
+    LEFT JOIN tickets t ON u.id = t.user_id
+    WHERE u.login_id = user_login_id
+    GROUP BY u.id, u.login_id, u.first_name, u.last_name, u.email;
+END //
+
+-- 5.3 Procedure to update movie availability after booking (for ticket booking process)
+CREATE PROCEDURE UpdateMovieAvailability(
+    IN p_movie_name VARCHAR(100),
+    IN p_theatre_name VARCHAR(100),
+    IN p_tickets_booked INT
+)
+MODIFIES SQL DATA
+DETERMINISTIC
+COMMENT 'Update movie availability and status after booking'
+BEGIN
+    DECLARE current_available INT DEFAULT 0;
+    DECLARE new_available INT DEFAULT 0;
+    
+    -- Get current available tickets
+    SELECT available_tickets INTO current_available 
+    FROM movies 
+    WHERE movie_name = p_movie_name AND theatre_name = p_theatre_name;
+    
+    -- Calculate new availability
+    SET new_available = GREATEST(0, current_available - p_tickets_booked);
+    
+    -- Update movie availability and status
+    UPDATE movies 
+    SET 
+        available_tickets = new_available,
+        status = CASE 
+            WHEN new_available <= 0 THEN 'SOLD_OUT' 
+            ELSE 'BOOK_ASAP' 
+        END,
+        modified_date = CURRENT_TIMESTAMP
+    WHERE movie_name = p_movie_name AND theatre_name = p_theatre_name;
+    
+    -- Return updated movie info
+    SELECT 
+        movie_name, 
+        theatre_name, 
+        total_tickets, 
+        available_tickets, 
+        status,
+        CONCAT('Updated availability: ', new_available, ' tickets remaining') as message
+    FROM movies 
+    WHERE movie_name = p_movie_name AND theatre_name = p_theatre_name;
+END //
+
+-- 5.4 Function to generate unique booking reference
+CREATE FUNCTION GenerateBookingReference() 
+RETURNS VARCHAR(20)
+READS SQL DATA
+DETERMINISTIC
+COMMENT 'Generate unique booking reference in format MB1234567890'
+BEGIN
+    DECLARE booking_ref VARCHAR(20);
+    DECLARE ref_exists INT DEFAULT 1;
+    
+    WHILE ref_exists > 0 DO
+        SET booking_ref = CONCAT('MB', LPAD(FLOOR(RAND() * 10000000000), 10, '0'));
+        SELECT COUNT(*) INTO ref_exists FROM tickets WHERE booking_reference = booking_ref;
+    END WHILE;
+    
+    RETURN booking_ref;
+END //
+
+DELIMITER ;
+
+-- ===============================================
+-- STEP 6: CREATE TRIGGERS (Automation & Data Integrity)
+-- ===============================================
+
+-- 6.1 Trigger to automatically generate booking reference
+DELIMITER //
+
+CREATE TRIGGER tr_tickets_before_insert 
+BEFORE INSERT ON tickets
+FOR EACH ROW
+BEGIN
+    -- Generate unique booking reference if not provided
+    IF NEW.booking_reference IS NULL OR NEW.booking_reference = '' THEN
+        SET NEW.booking_reference = GenerateBookingReference();
+    END IF;
+    
+    -- Calculate total amount based on ticket price and number of tickets
+    IF NEW.total_amount IS NULL THEN
+        SELECT ticket_price * NEW.number_of_tickets INTO NEW.total_amount
+        FROM movies 
+        WHERE movie_name = NEW.movie_name AND theatre_name = NEW.theatre_name;
+    END IF;
+END //
+
+-- 6.2 Trigger to update movie availability when ticket is cancelled
+CREATE TRIGGER tr_tickets_after_update
+AFTER UPDATE ON tickets
+FOR EACH ROW
+BEGIN
+    -- If ticket status changed from CONFIRMED to CANCELLED, restore availability
+    IF OLD.status = 'CONFIRMED' AND NEW.status = 'CANCELLED' THEN
+        UPDATE movies 
+        SET 
+            available_tickets = available_tickets + NEW.number_of_tickets,
+            status = CASE 
+                WHEN available_tickets + NEW.number_of_tickets > 0 THEN 'BOOK_ASAP' 
+                ELSE status 
+            END,
+            modified_date = CURRENT_TIMESTAMP
+        WHERE movie_name = NEW.movie_name AND theatre_name = NEW.theatre_name;
+    END IF;
+END //
+
+DELIMITER ;
+
+-- ===============================================
+-- STEP 7: CREATE VIEWS (For Easy Data Access)
+-- ===============================================
+
+-- 7.1 View for available movies (US_02 - View Movies)
+CREATE VIEW vw_available_movies AS
+SELECT 
+    m.movie_name,
+    m.theatre_name,
+    m.total_tickets,
+    m.available_tickets,
+    m.status,
+    m.description,
+    m.genre,
+    m.language,
+    m.duration,
+    m.rating,
+    m.ticket_price,
+    m.poster_url,
+    GROUP_CONCAT(DISTINCT CONCAT(st.show_date, ' ', st.show_time) ORDER BY st.show_date, st.show_time SEPARATOR ', ') as show_times
+FROM movies m
+LEFT JOIN movie_show_times st ON m.movie_name = st.movie_name AND m.theatre_name = st.theatre_name
+WHERE m.status = 'BOOK_ASAP' AND m.available_tickets > 0
+GROUP BY m.movie_name, m.theatre_name, m.total_tickets, m.available_tickets, 
+         m.status, m.description, m.genre, m.language, m.duration, m.rating, 
+         m.ticket_price, m.poster_url
+ORDER BY m.movie_name, m.theatre_name;
+
+-- 7.2 View for booking statistics (Admin dashboard)
+CREATE VIEW vw_booking_statistics AS
+SELECT 
+    m.movie_name,
+    m.theatre_name,
+    m.total_tickets,
+    m.available_tickets,
+    (m.total_tickets - m.available_tickets) as tickets_sold,
+    ROUND((m.total_tickets - m.available_tickets) * 100.0 / m.total_tickets, 2) as occupancy_rate,
+    COUNT(t.id) as total_bookings,
+    COALESCE(SUM(t.total_amount), 0) as total_revenue,
+    m.status
+FROM movies m
+LEFT JOIN tickets t ON m.movie_name = t.movie_name 
+                    AND m.theatre_name = t.theatre_name 
+                    AND t.status = 'CONFIRMED'
+GROUP BY m.movie_name, m.theatre_name, m.total_tickets, m.available_tickets, m.status
+ORDER BY occupancy_rate DESC, total_revenue DESC;
+
+-- ===============================================
+-- STEP 8: VERIFICATION QUERIES
+-- ===============================================
+
+-- 8.1 Verify table structure
+SELECT 'Tables created successfully' as Status;
+SHOW TABLES;
+
+-- 8.2 Verify sample data
+SELECT 'Sample data verification' as Status;
+SELECT COUNT(*) as users_count FROM users;
+SELECT COUNT(*) as movies_count FROM movies;
+SELECT COUNT(*) as show_times_count FROM movie_show_times;
+
+-- 8.3 Verify composite primary key
+SELECT 'Composite Primary Key verification' as Status;
+SHOW INDEX FROM movies WHERE Key_name = 'PRIMARY';
+
+-- 8.4 Verify foreign key relationships
+SELECT 'Foreign Key constraints verification' as Status;
+SELECT 
+    CONSTRAINT_NAME,
+    TABLE_NAME,
+    COLUMN_NAME,
+    REFERENCED_TABLE_NAME,
+    REFERENCED_COLUMN_NAME
+FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+WHERE REFERENCED_TABLE_SCHEMA = 'moviebookingdb'
+AND REFERENCED_TABLE_NAME IS NOT NULL;
+
+-- 8.5 Test stored procedures
+SELECT 'Testing stored procedures' as Status;
+CALL GetMovieStatistics();
+
+-- ===============================================
+-- STEP 9: SECURITY SETUP
+-- ===============================================
+
+-- 9.1 Create read-only user for reporting
+CREATE USER IF NOT EXISTS 'movieapp_readonly'@'localhost' IDENTIFIED BY 'ReadOnly123!';
+GRANT SELECT ON moviebookingdb.* TO 'movieapp_readonly'@'localhost';
+
+-- 9.2 Create backup user
+CREATE USER IF NOT EXISTS 'movieapp_backup'@'localhost' IDENTIFIED BY 'Backup123!';
+GRANT SELECT, LOCK TABLES ON moviebookingdb.* TO 'movieapp_backup'@'localhost';
+
+-- Apply security changes
+FLUSH PRIVILEGES;
+
+-- ===============================================
+-- SETUP COMPLETE
+-- ===============================================
+
+SELECT '🎉 Movie Booking Database Setup Completed Successfully! 🎉' as Status;
+SELECT 'Database: moviebookingdb' as Info;
+SELECT 'Tables: users, movies (composite PK), tickets, movie_show_times' as Tables;
+SELECT 'Sample Data: 3 users, 4 movie entries (2 movies x 2 theatres)' as SampleData;
+SELECT 'Features: Stored procedures, triggers, views, indexes' as Features;
+SELECT 'Users: movieapp (main), movieapp_readonly (reports), movieapp_backup (backup)' as DatabaseUsers;
+
+-- Test login credentials:
+-- Admin: admin / admin123
+-- User: john_doe / password123
+-- User: jane_smith / password123
