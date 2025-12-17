@@ -76,3 +76,18 @@
 2025-12-17 18:11:58 - Securing GET /error
 2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
 2025-12-17 18:11:58 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:13:57 - Securing OPTIONS /api/v1.0/moviebooking/login
+2025-12-17 18:13:57 - Securing POST /api/v1.0/moviebooking/login
+2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:13:57 - Secured POST /api/v1.0/moviebooking/login
+2025-12-17 18:13:57 - POST Login request received for user: admin
+2025-12-17 18:13:57 - Authenticating user: admin
+2025-12-17 18:13:57 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-17 18:13:57 - Failed to authenticate since password does not match stored value
+2025-12-17 18:13:57 - Authentication failed for user: admin
+2025-12-17 18:13:57 - Securing GET /favicon.ico
+2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:13:57 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:13:57 - Securing GET /error
+2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:13:57 - Pre-authenticated entry point called. Rejecting access
