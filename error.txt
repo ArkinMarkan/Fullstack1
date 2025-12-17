@@ -104,3 +104,4 @@ In PowerShell: mysql -u movieapp -pMovieApp123! -e "SELECT USER(), CURRENT_USER(
 List users (as root): mysql -u root -p -e "SELECT user, host FROM mysql.user WHERE user='movieapp';"
 Test DB access: mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; SHOW TABLES;"
 mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; SHOW TABLES;"
+GRANT ALL PRIVILEGES ON moviebookingdb.* TO 'movieapp'@'localhost'; FLUSH PRIVILEGES;
