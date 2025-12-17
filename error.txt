@@ -99,3 +99,7 @@ mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET passwo
 
 Check: SELECT login_id, LENGTH(password) AS len, password FROM users WHERE login_id IN ('admin','john_doe');
 Expected len = 60 for bcrypt. If shorter, the column is truncating; ALTER TABLE users MODIFY password VARCHAR(100) NOT NULL; then re-update the hash.
+Verify in MySQL:
+In PowerShell: mysql -u movieapp -pMovieApp123! -e "SELECT USER(), CURRENT_USER();"
+List users (as root): mysql -u root -p -e "SELECT user, host FROM mysql.user WHERE user='movieapp';"
+Test DB access: mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; SHOW TABLES;"
