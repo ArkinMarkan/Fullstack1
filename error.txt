@@ -96,3 +96,6 @@
 Update to expected:
 mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16' WHERE login_id='admin';"
 mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq' WHERE login_id='john_doe';"
+
+Check: SELECT login_id, LENGTH(password) AS len, password FROM users WHERE login_id IN ('admin','john_doe');
+Expected len = 60 for bcrypt. If shorter, the column is truncating; ALTER TABLE users MODIFY password VARCHAR(100) NOT NULL; then re-update the hash.
