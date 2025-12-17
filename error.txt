@@ -1,53 +1,23 @@
 
-2025-12-17 13:43:25 - Starting MovieBookingApplication using Java 17.0.12 with PID 2816 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 13:43:25 - The following 1 profile is active: "mysql"
-2025-12-17 13:43:27 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 13:43:27 - Finished Spring Data repository scanning in 77 ms. Found 3 JPA repository interfaces.
-2025-12-17 13:43:29 - Tomcat initialized with port 8080 (http)
-2025-12-17 13:43:29 - Starting service [Tomcat]
-2025-12-17 13:43:29 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 13:43:29 - Initializing Spring embedded WebApplicationContext
-2025-12-17 13:43:29 - Root WebApplicationContext: initialization completed in 3362 ms
-2025-12-17 13:43:29 - MovieBookingHikariPool - Starting...
-2025-12-17 13:43:30 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@1de08775
-2025-12-17 13:43:30 - MovieBookingHikariPool - Start completed.
-2025-12-17 13:43:30 - Reading from moviebookingdb.databasechangelog
-2025-12-17 13:43:30 - Successfully acquired change log lock
-2025-12-17 13:43:30 - Using deploymentId: 5959210888
-2025-12-17 13:43:30 - Reading from moviebookingdb.databasechangelog
-Running Changeset: db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp
-2025-12-17 13:43:31 - ChangeSet db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp encountered an exception.
-2025-12-17 13:43:31 - Update command encountered an exception.
-2025-12-17 13:43:31 - Successfully released change log lock
-2025-12-17 13:43:31 - Command execution complete
-2025-12-17 13:43:31 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-2025-12-17 13:43:31 - Stopping service [Tomcat]
-2025-12-17 13:43:31 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
- java.base@17.0.12/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:43:31 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
- java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
- java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
- java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
- java.base@17.0.12/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1061)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
- java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
- java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:43:31 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2025-12-17 13:43:31 - MovieBookingHikariPool - Shutdown initiated...
-2025-12-17 13:43:31 - MovieBookingHikariPool - Shutdown completed.
-2025-12-17 13:43:31 - 
+2025-12-17 13:48:05 - Starting MovieBookingApplication using Java 17.0.12 with PID 5292 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-17 13:48:05 - The following 1 profile is active: "mysql"
+2025-12-17 13:48:07 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-17 13:48:07 - Finished Spring Data repository scanning in 86 ms. Found 3 JPA repository interfaces.
+2025-12-17 13:48:08 - Tomcat initialized with port 8080 (http)
+2025-12-17 13:48:08 - Starting service [Tomcat]
+2025-12-17 13:48:08 - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-17 13:48:08 - Initializing Spring embedded WebApplicationContext
+2025-12-17 13:48:08 - Root WebApplicationContext: initialization completed in 2898 ms
+2025-12-17 13:48:09 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-17 13:48:09 - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-17 13:48:09 - Failed to initialize JPA EntityManagerFactory: Unable to create requested service [org.hibernate.cache.spi.RegionFactory] due to: Unable to resolve name [org.hibernate.cache.jcache.JCacheRegionFactory] as strategy [org.hibernate.cache.spi.RegionFactory]
+2025-12-17 13:48:09 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2025-12-17 13:48:09 - Stopping service [Tomcat]
+2025-12-17 13:48:09 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-17 13:48:09 - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-12-17 13:43:31 - Application run failed
+2025-12-17 13:48:09 - Application run failed
 org.springframework.context.ApplicationContextException: Unable to start web server
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:610)
@@ -159,8 +129,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 82 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Unable to create requested service [org.hibernate.cache.spi.RegionFactory] due to: Unable to resolve name [org.hibernate.cache.jcache.JCacheRegionFactory] as strategy [org.hibernate.cache.spi.RegionFactory]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1775)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
@@ -168,78 +137,70 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:312)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 94 common frames omitted
-Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
-	at liquibase.command.CommandScope.execute(CommandScope.java:237)
-	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222)
-	at liquibase.Scope.lambda$child$0(Scope.java:184)
-	at liquibase.Scope.child(Scope.java:193)
-	at liquibase.Scope.child(Scope.java:183)
-	at liquibase.Scope.child(Scope.java:162)
-	at liquibase.Liquibase.runInScope(Liquibase.java:1371)
-	at liquibase.Liquibase.update(Liquibase.java:211)
-	at liquibase.Liquibase.update(Liquibase.java:193)
-	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:331)
-	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:286)
+Caused by: org.hibernate.service.spi.ServiceException: Unable to create requested service [org.hibernate.cache.spi.RegionFactory] due to: Unable to resolve name [org.hibernate.cache.jcache.JCacheRegionFactory] as strategy [org.hibernate.cache.spi.RegionFactory]
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:276)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:238)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:215)
+	at org.hibernate.boot.internal.MetadataBuilderImpl$MetadataBuildingOptionsImpl.<init>(MetadataBuilderImpl.java:708)
+	at org.hibernate.boot.internal.MetadataBuilderImpl.<init>(MetadataBuilderImpl.java:140)
+	at org.hibernate.boot.MetadataSources.getMetadataBuilder(MetadataSources.java:164)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.<init>(EntityManagerFactoryBuilderImpl.java:277)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.<init>(EntityManagerFactoryBuilderImpl.java:198)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:63)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:376)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:352)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1822)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771)
-	... 103 common frames omitted
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:122)
-	at liquibase.command.core.AbstractUpdateCommandStep.lambda$doRun$1(AbstractUpdateCommandStep.java:105)
-	at liquibase.Scope.lambda$child$0(Scope.java:184)
-	at liquibase.Scope.child(Scope.java:193)
-	at liquibase.Scope.child(Scope.java:183)
-	at liquibase.Scope.child(Scope.java:162)
-	at liquibase.command.core.AbstractUpdateCommandStep.doRun(AbstractUpdateCommandStep.java:104)
-	at liquibase.command.core.AbstractUpdateCommandStep.lambda$run$0(AbstractUpdateCommandStep.java:63)
-	at liquibase.Scope.lambda$child$0(Scope.java:184)
-	at liquibase.Scope.child(Scope.java:193)
-	at liquibase.Scope.child(Scope.java:183)
-	at liquibase.Scope.child(Scope.java:162)
-	at liquibase.command.core.AbstractUpdateCommandStep.run(AbstractUpdateCommandStep.java:62)
-	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:106)
-	at liquibase.command.CommandScope.execute(CommandScope.java:214)
+	... 101 common frames omitted
+Caused by: org.hibernate.boot.registry.selector.spi.StrategySelectionException: Unable to resolve name [org.hibernate.cache.jcache.JCacheRegionFactory] as strategy [org.hibernate.cache.spi.RegionFactory]
+	at org.hibernate.boot.registry.selector.internal.StrategySelectorImpl.selectStrategyImplementor(StrategySelectorImpl.java:154)
+	at org.hibernate.boot.registry.selector.internal.StrategySelectorImpl.resolveStrategy(StrategySelectorImpl.java:236)
+	at org.hibernate.boot.registry.selector.internal.StrategySelectorImpl.resolveStrategy(StrategySelectorImpl.java:189)
+	at org.hibernate.cache.internal.RegionFactoryInitiator.resolveRegionFactory(RegionFactoryInitiator.java:96)
+	at org.hibernate.cache.internal.RegionFactoryInitiator.initiateService(RegionFactoryInitiator.java:47)
+	at org.hibernate.cache.internal.RegionFactoryInitiator.initiateService(RegionFactoryInitiator.java:32)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:129)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
 	... 115 common frames omitted
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:785)
-	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:118)
-	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:68)
-	at liquibase.changelog.ChangeLogIterator$2.lambda$run$0(ChangeLogIterator.java:110)
-	at liquibase.Scope.lambda$child$0(Scope.java:184)
-	at liquibase.Scope.child(Scope.java:193)
-	at liquibase.Scope.child(Scope.java:183)
-	at liquibase.Scope.child(Scope.java:162)
-	at liquibase.Scope.child(Scope.java:250)
-	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:100)
-	at liquibase.Scope.lambda$child$0(Scope.java:184)
-	at liquibase.Scope.child(Scope.java:193)
-	at liquibase.Scope.child(Scope.java:183)
-	at liquibase.Scope.child(Scope.java:162)
-	at liquibase.Scope.child(Scope.java:250)
-	at liquibase.Scope.child(Scope.java:254)
-	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:74)
-	... 129 common frames omitted
-Caused by: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:468)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77)
-	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:177)
-	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1291)
-	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1273)
-	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744)
-	... 145 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: Duplicate key name 'idx_movies_status'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
-	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
-	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94)
-	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
-	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:462)
-	... 150 common frames omitted
+Caused by: org.hibernate.boot.registry.classloading.spi.ClassLoadingException: Unable to load class [org.hibernate.cache.jcache.JCacheRegionFactory]
+	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:126)
+	at org.hibernate.boot.registry.selector.internal.StrategySelectorImpl.selectStrategyImplementor(StrategySelectorImpl.java:150)
+	... 122 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Could not load requested class : org.hibernate.cache.jcache.JCacheRegionFactory
+	at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:216)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:592)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:467)
+	at org.hibernate.boot.registry.classloading.internal.ClassLoaderServiceImpl.classForName(ClassLoaderServiceImpl.java:123)
+	... 123 common frames omitted
+Caused by: java.lang.Throwable: null
+	at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:209)
+	... 128 common frames omitted
+	Suppressed: java.lang.ClassNotFoundException: org.hibernate.cache.jcache.JCacheRegionFactory
+		at org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader.loadClass(TomcatEmbeddedWebappClassLoader.java:72)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
+		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
+		... 128 common frames omitted
+	Suppressed: java.lang.ClassNotFoundException: org.hibernate.cache.jcache.JCacheRegionFactory
+		at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+		at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
+		... 128 common frames omitted
+	Suppressed: java.lang.ClassNotFoundException: org.hibernate.cache.jcache.JCacheRegionFactory
+		at org.springframework.boot.web.embedded.tomcat.TomcatEmbeddedWebappClassLoader.loadClass(TomcatEmbeddedWebappClassLoader.java:72)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1165)
+		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
+		... 128 common frames omitted
+	Suppressed: java.lang.ClassNotFoundException: org.hibernate.cache.jcache.JCacheRegionFactory
+		at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+		at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+		at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:525)
+		at org.hibernate.boot.registry.classloading.internal.AggregatedClassLoader.findClass(AggregatedClassLoader.java:206)
+		... 128 common frames omitted
+
