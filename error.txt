@@ -1,25 +1,24 @@
 
-2025-12-17 14:58:39 - Starting MovieBookingApplication using Java 17.0.12 with PID 6988 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 14:58:39 - The following 1 profile is active: "mysql"
-2025-12-17 14:58:40 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 14:58:40 - Finished Spring Data repository scanning in 69 ms. Found 3 JPA repository interfaces.
-2025-12-17 14:58:42 - Tomcat initialized with port 8080 (http)
-2025-12-17 14:58:42 - Starting service [Tomcat]
-2025-12-17 14:58:42 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 14:58:42 - Initializing Spring embedded WebApplicationContext
-2025-12-17 14:58:42 - Root WebApplicationContext: initialization completed in 3101 ms
-2025-12-17 14:58:42 - MovieBookingHikariPool - Starting...
-2025-12-17 14:58:43 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@77d0dbba
-2025-12-17 14:58:43 - MovieBookingHikariPool - Start completed.
-2025-12-17 14:58:43 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-12-17 14:58:43 - HHH000412: Hibernate ORM core version 6.3.1.Final
-2025-12-17 14:58:43 - HHH000026: Second-level cache disabled
-2025-12-17 14:58:43 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-12-17 14:58:43 - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-12-17 14:58:44 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-12-17 14:58:44 - alter table movie_show_times modify column show_time varchar(255)
-2025-12-17 14:58:45 - alter table movies add column created_at datetime(6) not null
-2025-12-17 14:58:45 - GenerationTarget encountered exception accepting command : Error executing DDL "alter table movies add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
+2025-12-17 15:04:46 - Starting MovieBookingApplication using Java 17.0.12 with PID 11624 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-17 15:04:46 - The following 1 profile is active: "mysql"
+2025-12-17 15:04:48 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-17 15:04:48 - Finished Spring Data repository scanning in 67 ms. Found 3 JPA repository interfaces.
+2025-12-17 15:04:49 - Tomcat initialized with port 8080 (http)
+2025-12-17 15:04:49 - Starting service [Tomcat]
+2025-12-17 15:04:49 - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-17 15:04:49 - Initializing Spring embedded WebApplicationContext
+2025-12-17 15:04:49 - Root WebApplicationContext: initialization completed in 2899 ms
+2025-12-17 15:04:50 - MovieBookingHikariPool - Starting...
+2025-12-17 15:04:50 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@70b196d3
+2025-12-17 15:04:50 - MovieBookingHikariPool - Start completed.
+2025-12-17 15:04:50 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-17 15:04:50 - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-17 15:04:50 - HHH000026: Second-level cache disabled
+2025-12-17 15:04:50 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-17 15:04:50 - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-17 15:04:52 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-17 15:04:52 - alter table movies add column created_at datetime(6) not null
+2025-12-17 15:04:52 - GenerationTarget encountered exception accepting command : Error executing DDL "alter table movies add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table movies add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574)
@@ -153,12 +152,8 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: In
 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
 	... 123 common frames omitted
-2025-12-17 14:58:45 - alter table movies add column updated_at datetime(6)
-2025-12-17 14:58:45 - alter table tickets add column show_date_time datetime(6)
-2025-12-17 14:58:45 - alter table tickets add column total_price decimal(10,2)
-2025-12-17 14:58:45 - alter table tickets add column updated_at datetime(6)
-2025-12-17 14:58:45 - alter table users add column created_at datetime(6) not null
-2025-12-17 14:58:45 - GenerationTarget encountered exception accepting command : Error executing DDL "alter table users add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
+2025-12-17 15:04:52 - alter table users add column created_at datetime(6) not null
+2025-12-17 15:04:52 - GenerationTarget encountered exception accepting command : Error executing DDL "alter table users add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
 org.hibernate.tool.schema.spi.CommandAcceptanceException: Error executing DDL "alter table users add column created_at datetime(6) not null" via JDBC [Data truncation: Incorrect datetime value: '0000-00-00 00:00:00' for column 'created_at' at row 1]
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:94)
 	at org.hibernate.tool.schema.internal.AbstractSchemaMigrator.applySqlString(AbstractSchemaMigrator.java:574)
@@ -292,30 +287,11 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: In
 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
 	at org.hibernate.tool.schema.internal.exec.GenerationTargetToDatabase.accept(GenerationTargetToDatabase.java:80)
 	... 123 common frames omitted
-2025-12-17 14:58:45 - alter table users add column is_active bit
-2025-12-17 14:58:45 - alter table users add column is_email_verified bit
-2025-12-17 14:58:45 - alter table users add column updated_at datetime(6)
-2025-12-17 14:58:45 - create index idx_movie_name on movies (movie_name)
-2025-12-17 14:58:45 - create index idx_theatre_name on movies (theatre_name)
-2025-12-17 14:58:45 - create index idx_status on movies (status)
-2025-12-17 14:58:45 - create index idx_movie_name on tickets (movie_name)
-2025-12-17 14:58:46 - create index idx_theatre_name on tickets (theatre_name)
-2025-12-17 14:58:46 - create index idx_user_id on tickets (user_id)
-2025-12-17 14:58:46 - create index idx_user_login_id on tickets (user_login_id)
-2025-12-17 14:58:46 - create index idx_booking_date on tickets (booking_date)
-2025-12-17 14:58:46 - create index idx_status on tickets (status)
-2025-12-17 14:58:46 - create index idx_login_id on users (login_id)
-2025-12-17 14:58:46 - create index idx_email on users (email)
-2025-12-17 14:58:46 - create index idx_role on users (role)
-2025-12-17 14:58:46 - alter table users drop index uk_user_email
-2025-12-17 14:58:46 - alter table users add constraint uk_user_email unique (email)
-2025-12-17 14:58:46 - alter table users drop index uk_user_login_id
-2025-12-17 14:58:46 - alter table users add constraint uk_user_login_id unique (login_id)
-2025-12-17 14:58:46 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-12-17 14:58:47 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-12-17 14:58:47 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.List com.moviebookingapp.repository.UserRepository.findByRegistrationDateRange(java.time.LocalDateTime,java.time.LocalDateTime); Reason: Validation failed for query for method public abstract java.util.List com.moviebookingapp.repository.UserRepository.findByRegistrationDateRange(java.time.LocalDateTime,java.time.LocalDateTime)
-2025-12-17 14:58:47 - Stopping service [Tomcat]
-2025-12-17 14:58:47 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 15:04:52 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-17 15:04:52 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-17 15:04:53 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Could not create query for public abstract java.util.List com.moviebookingapp.repository.UserRepository.findByRegistrationDateRange(java.time.LocalDateTime,java.time.LocalDateTime); Reason: Validation failed for query for method public abstract java.util.List com.moviebookingapp.repository.UserRepository.findByRegistrationDateRange(java.time.LocalDateTime,java.time.LocalDateTime)
+2025-12-17 15:04:53 - Stopping service [Tomcat]
+2025-12-17 15:04:53 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -325,7 +301,7 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: In
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 14:58:47 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 15:04:53 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -334,14 +310,14 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: In
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 14:58:47 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2025-12-17 14:58:47 - Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-12-17 14:58:47 - MovieBookingHikariPool - Shutdown initiated...
-2025-12-17 14:58:47 - MovieBookingHikariPool - Shutdown completed.
-2025-12-17 14:58:47 - 
+2025-12-17 15:04:53 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-17 15:04:53 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-12-17 15:04:53 - MovieBookingHikariPool - Shutdown initiated...
+2025-12-17 15:04:53 - MovieBookingHikariPool - Shutdown completed.
+2025-12-17 15:04:53 - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-12-17 14:58:47 - Application run failed
+2025-12-17 15:04:53 - Application run failed
 org.springframework.context.ApplicationContextException: Unable to start web server
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:610)
@@ -518,3 +494,4 @@ Caused by: org.hibernate.query.sqm.PathElementException: Could not resolve attri
 	at org.hibernate.query.hql.internal.SemanticQueryBuilder.buildSemanticModel(SemanticQueryBuilder.java:310)
 	at org.hibernate.query.hql.internal.StandardHqlTranslator.translate(StandardHqlTranslator.java:71)
 	... 110 common frames omitted
+
