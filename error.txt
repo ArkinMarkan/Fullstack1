@@ -300,3 +300,41 @@ Caused by: com.mysql.cj.jdbc.exceptions.MysqlDataTruncation: Data truncation: In
 2025-12-17 15:09:22 - select count(*) from users u1_0
 2025-12-17 15:09:22 - Users already exist, skipping user initialization
 2025-12-17 15:09:22 - Sample data initialization completed
+2025-12-17 15:13:00 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-17 15:13:00 - Initializing Servlet 'dispatcherServlet'
+2025-12-17 15:13:00 - Completed initialization in 2 ms
+2025-12-17 15:13:00 - Securing GET /
+2025-12-17 15:13:00 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:00 - Cache miss for REQUEST dispatch to '/' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-12-17 15:13:01 - Secured GET /
+2025-12-17 15:13:01 - Securing GET /favicon.ico
+2025-12-17 15:13:01 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:01 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:13:01 - Securing GET /error
+2025-12-17 15:13:01 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:01 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:13:31 - Securing GET /docs
+2025-12-17 15:13:31 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:31 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:13:31 - Securing GET /error
+2025-12-17 15:13:31 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:31 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:13:34 - Securing GET /docs
+2025-12-17 15:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:34 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:13:34 - Securing GET /error
+2025-12-17 15:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:13:34 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:16:39 - Securing GET /api/v1.0/moviebooking
+2025-12-17 15:16:39 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:16:39 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:16:39 - Securing GET /error
+2025-12-17 15:16:39 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:16:39 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:16:42 - Securing GET /api/v1.0/moviebooking
+2025-12-17 15:16:42 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:16:43 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 15:16:43 - Securing GET /error
+2025-12-17 15:16:43 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 15:16:43 - Pre-authenticated entry point called. Rejecting access
+
