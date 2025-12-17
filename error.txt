@@ -91,3 +91,8 @@
 2025-12-17 18:13:57 - Securing GET /error
 2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
 2025-12-17 18:13:57 - Pre-authenticated entry point called. Rejecting access
+
+
+Update to expected:
+mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16' WHERE login_id='admin';"
+mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq' WHERE login_id='john_doe';"
