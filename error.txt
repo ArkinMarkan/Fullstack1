@@ -1,35 +1,28 @@
 
-2025-12-17 13:05:19 - Starting MovieBookingApplication using Java 17.0.12 with PID 9932 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 13:05:19 - The following 1 profile is active: "mysql"
-2025-12-17 13:05:20 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 13:05:20 - Finished Spring Data repository scanning in 52 ms. Found 3 JPA repository interfaces.
-2025-12-17 13:05:22 - Tomcat initialized with port 8080 (http)
-2025-12-17 13:05:22 - Starting service [Tomcat]
-2025-12-17 13:05:22 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 13:05:22 - Initializing Spring embedded WebApplicationContext
-2025-12-17 13:05:22 - Root WebApplicationContext: initialization completed in 2875 ms
-2025-12-17 13:05:22 - HikariPool-1 - Starting...
-2025-12-17 13:05:22 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1c6ac73c
-2025-12-17 13:05:22 - HikariPool-1 - Start completed.
-2025-12-17 13:05:23 - Reading from moviebookingdb.databasechangelog
-2025-12-17 13:05:23 - Successfully acquired change log lock
-2025-12-17 13:05:23 - Using deploymentId: 5956923804
-2025-12-17 13:05:23 - Reading from moviebookingdb.databasechangelog
-Running Changeset: db/changelog/001-create-initial-schema.sql::001-create-initial-schema::moviebookingapp
-2025-12-17 13:05:23 - Table 'users' already exists
-2025-12-17 13:05:23 - Table 'movies' already exists
-2025-12-17 13:05:23 - Table 'movie_show_times' already exists
-2025-12-17 13:05:24 - Table 'tickets' already exists
-2025-12-17 13:05:24 - Custom SQL executed
-2025-12-17 13:05:24 - ChangeSet db/changelog/001-create-initial-schema.sql::001-create-initial-schema::moviebookingapp ran successfully in 230ms
-Running Changeset: db/changelog/002-insert-sample-data.sql::raw::includeAll
-2025-12-17 13:05:24 - ChangeSet db/changelog/002-insert-sample-data.sql::raw::includeAll encountered an exception.
-2025-12-17 13:05:24 - Update command encountered an exception.
-2025-12-17 13:05:24 - Successfully released change log lock
-2025-12-17 13:05:24 - Command execution complete
-2025-12-17 13:05:24 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-2025-12-17 13:05:24 - Stopping service [Tomcat]
-2025-12-17 13:05:24 - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 13:14:31 - Starting MovieBookingApplication using Java 17.0.12 with PID 13388 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-17 13:14:31 - The following 1 profile is active: "mysql"
+2025-12-17 13:14:32 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-17 13:14:32 - Finished Spring Data repository scanning in 66 ms. Found 3 JPA repository interfaces.
+2025-12-17 13:14:35 - Tomcat initialized with port 8080 (http)
+2025-12-17 13:14:35 - Starting service [Tomcat]
+2025-12-17 13:14:35 - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-17 13:14:35 - Initializing Spring embedded WebApplicationContext
+2025-12-17 13:14:35 - Root WebApplicationContext: initialization completed in 4011 ms
+2025-12-17 13:14:35 - HikariPool-1 - Starting...
+2025-12-17 13:14:36 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@283baa39
+2025-12-17 13:14:36 - HikariPool-1 - Start completed.
+2025-12-17 13:14:37 - Reading from moviebookingdb.databasechangelog
+2025-12-17 13:14:37 - Successfully acquired change log lock
+2025-12-17 13:14:37 - Using deploymentId: 5957477223
+2025-12-17 13:14:37 - Reading from moviebookingdb.databasechangelog
+Running Changeset: db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp
+2025-12-17 13:14:37 - ChangeSet db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp encountered an exception.
+2025-12-17 13:14:37 - Update command encountered an exception.
+2025-12-17 13:14:37 - Successfully released change log lock
+2025-12-17 13:14:37 - Command execution complete
+2025-12-17 13:14:37 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2025-12-17 13:14:37 - Stopping service [Tomcat]
+2025-12-17 13:14:37 - The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -39,7 +32,7 @@ Running Changeset: db/changelog/002-insert-sample-data.sql::raw::includeAll
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:05:24 - The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 13:14:37 - The web application [ROOT] appears to have started a thread named [HikariPool-1 connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -48,13 +41,13 @@ Running Changeset: db/changelog/002-insert-sample-data.sql::raw::includeAll
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:05:24 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2025-12-17 13:05:24 - HikariPool-1 - Shutdown initiated...
-2025-12-17 13:05:24 - HikariPool-1 - Shutdown completed.
-2025-12-17 13:05:24 - 
+2025-12-17 13:14:37 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-17 13:14:37 - HikariPool-1 - Shutdown initiated...
+2025-12-17 13:14:37 - HikariPool-1 - Shutdown completed.
+2025-12-17 13:14:37 - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-12-17 13:05:24 - Application run failed
+2025-12-17 13:14:37 - Application run failed
 org.springframework.context.ApplicationContextException: Unable to start web server
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:610)
@@ -166,23 +159,13 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 82 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::raw::includeAll:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13 [Failed SQL: (1064) -- Insert sample movies
-INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp:
+     Reason: liquibase.exception.DatabaseException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY' [Failed SQL: (1062) INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
 VALUES 
 ('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg'),
-('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg');
-
--- Insert sample users (password is bcrypt encoded for 'admin123' and 'password123')
--- Note: The actual encoded passwords need to be generated using bcrypt with strength 10
--- For admin123: $2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16
--- For password123: $2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq
-INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role, enabled) 
-VALUES 
-('System', 'Administrator', 'admin@moviebooking.com', 'admin', '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', '9999999999', 'ADMIN', true),
-('John', 'Doe', 'john.doe@example.com', 'john_doe', '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', '9876543210', 'USER', true);]
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg')]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1775)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
@@ -194,23 +177,13 @@ VALUES
 	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 94 common frames omitted
-Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::raw::includeAll:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13 [Failed SQL: (1064) -- Insert sample movies
-INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp:
+     Reason: liquibase.exception.DatabaseException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY' [Failed SQL: (1062) INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
 VALUES 
 ('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg'),
-('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg');
-
--- Insert sample users (password is bcrypt encoded for 'admin123' and 'password123')
--- Note: The actual encoded passwords need to be generated using bcrypt with strength 10
--- For admin123: $2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16
--- For password123: $2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq
-INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role, enabled) 
-VALUES 
-('System', 'Administrator', 'admin@moviebooking.com', 'admin', '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', '9999999999', 'ADMIN', true),
-('John', 'Doe', 'john.doe@example.com', 'john_doe', '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', '9876543210', 'USER', true);]
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg')]
 	at liquibase.command.CommandScope.execute(CommandScope.java:237)
 	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222)
 	at liquibase.Scope.lambda$child$0(Scope.java:184)
@@ -225,23 +198,13 @@ VALUES
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1822)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771)
 	... 103 common frames omitted
-Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::raw::includeAll:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13 [Failed SQL: (1064) -- Insert sample movies
-INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp:
+     Reason: liquibase.exception.DatabaseException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY' [Failed SQL: (1062) INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
 VALUES 
 ('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg'),
-('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg');
-
--- Insert sample users (password is bcrypt encoded for 'admin123' and 'password123')
--- Note: The actual encoded passwords need to be generated using bcrypt with strength 10
--- For admin123: $2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16
--- For password123: $2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq
-INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role, enabled) 
-VALUES 
-('System', 'Administrator', 'admin@moviebooking.com', 'admin', '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', '9999999999', 'ADMIN', true),
-('John', 'Doe', 'john.doe@example.com', 'john_doe', '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', '9876543210', 'USER', true);]
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg')]
 	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:122)
 	at liquibase.command.core.AbstractUpdateCommandStep.lambda$doRun$1(AbstractUpdateCommandStep.java:105)
 	at liquibase.Scope.lambda$child$0(Scope.java:184)
@@ -258,23 +221,13 @@ VALUES
 	at liquibase.command.core.UpdateCommandStep.run(UpdateCommandStep.java:106)
 	at liquibase.command.CommandScope.execute(CommandScope.java:214)
 	... 115 common frames omitted
-Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::raw::includeAll:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13 [Failed SQL: (1064) -- Insert sample movies
-INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp:
+     Reason: liquibase.exception.DatabaseException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY' [Failed SQL: (1062) INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
 VALUES 
 ('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg'),
-('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg');
-
--- Insert sample users (password is bcrypt encoded for 'admin123' and 'password123')
--- Note: The actual encoded passwords need to be generated using bcrypt with strength 10
--- For admin123: $2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16
--- For password123: $2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq
-INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role, enabled) 
-VALUES 
-('System', 'Administrator', 'admin@moviebooking.com', 'admin', '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', '9999999999', 'ADMIN', true),
-('John', 'Doe', 'john.doe@example.com', 'john_doe', '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', '9876543210', 'USER', true);]
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg')]
 	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:785)
 	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:118)
 	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:68)
@@ -293,22 +246,12 @@ VALUES
 	at liquibase.Scope.child(Scope.java:254)
 	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:74)
 	... 129 common frames omitted
-Caused by: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13 [Failed SQL: (1064) -- Insert sample movies
-INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
+Caused by: liquibase.exception.DatabaseException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY' [Failed SQL: (1062) INSERT INTO movies (movie_name, theatre_name, total_tickets, available_tickets, status, description, genre, language, duration, poster_url) 
 VALUES 
 ('Avengers Endgame', 'PVR Cinemas', 100, 100, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('Avengers Endgame', 'INOX Multiplex', 150, 150, 'BOOK_ASAP', 'The final battle against Thanos', 'Action/Sci-Fi', 'English', 181, 'https://example.com/avengers-endgame-poster.jpg'),
 ('RRR', 'PVR Cinemas', 120, 120, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg'),
-('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg');
-
--- Insert sample users (password is bcrypt encoded for 'admin123' and 'password123')
--- Note: The actual encoded passwords need to be generated using bcrypt with strength 10
--- For admin123: $2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16
--- For password123: $2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq
-INSERT INTO users (first_name, last_name, email, login_id, password, contact_number, role, enabled) 
-VALUES 
-('System', 'Administrator', 'admin@moviebooking.com', 'admin', '$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16', '9999999999', 'ADMIN', true),
-('John', 'Doe', 'john.doe@example.com', 'john_doe', '$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq', '9876543210', 'USER', true);]
+('RRR', 'Cinepolis', 80, 80, 'BOOK_ASAP', 'A fictional story about Indian revolutionaries', 'Action/Drama', 'Telugu', 187, 'https://example.com/rrr-poster.jpg')]
 	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:468)
 	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77)
 	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:177)
@@ -316,8 +259,8 @@ VALUES
 	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1273)
 	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744)
 	... 145 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INSERT INTO users (first_name, last_name, email, login_id, password, contact_num' at line 13
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Avengers Endgame-PVR Cinemas' for key 'movies.PRIMARY'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:118)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
 	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
 	at com.mysql.cj.jdbc.StatementImpl.execute(StatementImpl.java:648)
@@ -325,3 +268,4 @@ Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL synta
 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
 	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:462)
 	... 150 common frames omitted
+
