@@ -1,45 +1,78 @@
-2025-12-17 17:16:03 - Starting MovieBookingApplication using Java 17.0.12 with PID 1148 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 17:16:03 - The following 1 profile is active: "mysql"
-2025-12-17 17:16:05 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 17:16:05 - Finished Spring Data repository scanning in 83 ms. Found 3 JPA repository interfaces.
-2025-12-17 17:16:07 - Tomcat initialized with port 8080 (http)
-2025-12-17 17:16:07 - Starting service [Tomcat]
-2025-12-17 17:16:07 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 17:16:07 - Initializing Spring embedded WebApplicationContext
-2025-12-17 17:16:07 - Root WebApplicationContext: initialization completed in 3294 ms
-2025-12-17 17:16:07 - MovieBookingHikariPool - Starting...
-2025-12-17 17:16:07 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d825dbe
-2025-12-17 17:16:07 - MovieBookingHikariPool - Start completed.
-2025-12-17 17:16:08 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-12-17 17:16:08 - HHH000412: Hibernate ORM core version 6.3.1.Final
-2025-12-17 17:16:08 - HHH000026: Second-level cache disabled
-2025-12-17 17:16:08 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-12-17 17:16:08 - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-12-17 17:16:10 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-12-17 17:16:10 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-12-17 17:16:10 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-12-17 17:16:12 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-12-17 17:16:13 - Exposing 3 endpoint(s) beneath base path '/actuator'
-2025-12-17 17:16:13 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@21080d55, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6b6eaa73, org.springframework.security.web.context.SecurityContextHolderFilter@44335e28, org.springframework.security.web.header.HeaderWriterFilter@7d2ccbcd, org.springframework.web.filter.CorsFilter@72416c9a, org.springframework.security.web.authentication.logout.LogoutFilter@3796062b, com.moviebookingapp.security.JwtAuthenticationFilter@398f6f04, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b00a3ea, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@287b3acd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6581cc72, org.springframework.security.web.session.SessionManagementFilter@8f08b5, org.springframework.security.web.access.ExceptionTranslationFilter@5710fcdf, org.springframework.security.web.access.intercept.AuthorizationFilter@a26daf9]
-2025-12-17 17:16:14 - Tomcat started on port 8080 (http) with context path ''
-2025-12-17 17:16:14 - Started MovieBookingApplication in 11.368 seconds (process running for 11.913)
-2025-12-17 17:16:14 - Initializing sample data...
-2025-12-17 17:16:14 - select count(*) from movies m1_0
-2025-12-17 17:16:14 - Movies already exist, skipping movie initialization
-2025-12-17 17:16:14 - select count(*) from users u1_0
-2025-12-17 17:16:14 - Users already exist, skipping user initialization
-2025-12-17 17:16:14 - Sample data initialization completed
-2025-12-17 17:16:25 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-12-17 17:16:25 - Initializing Servlet 'dispatcherServlet'
-2025-12-17 17:16:25 - Completed initialization in 2 ms
-2025-12-17 17:16:25 - Securing GET /favicon.ico
-2025-12-17 17:16:25 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 17:16:25 - Cache miss for REQUEST dispatch to '/favicon.ico' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
-2025-12-17 17:16:25 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 17:16:25 - Securing GET /error
-2025-12-17 17:16:25 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 17:16:25 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 17:16:38 - Securing OPTIONS /api/v1.0/moviebooking/login
-2025-12-17 17:16:38 - Securing POST /api/v1.0/moviebooking/login
-2025-12-17 17:16:38 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 17:16:38 - Secured POST /api/v1.0/moviebooking/login
+
+2025-12-17 18:10:44 - Starting MovieBookingApplication using Java 17.0.12 with PID 9440 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-17 18:10:44 - The following 1 profile is active: "mysql"
+2025-12-17 18:10:46 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-17 18:10:46 - Finished Spring Data repository scanning in 77 ms. Found 3 JPA repository interfaces.
+2025-12-17 18:10:48 - Tomcat initialized with port 8080 (http)
+2025-12-17 18:10:48 - Starting service [Tomcat]
+2025-12-17 18:10:48 - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-17 18:10:48 - Initializing Spring embedded WebApplicationContext
+2025-12-17 18:10:48 - Root WebApplicationContext: initialization completed in 3848 ms
+2025-12-17 18:10:48 - MovieBookingHikariPool - Starting...
+2025-12-17 18:10:48 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@43b6cb1c
+2025-12-17 18:10:48 - MovieBookingHikariPool - Start completed.
+2025-12-17 18:10:49 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-17 18:10:49 - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-17 18:10:49 - HHH000026: Second-level cache disabled
+2025-12-17 18:10:49 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-17 18:10:49 - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-17 18:10:51 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-17 18:10:51 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-17 18:10:51 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-17 18:10:54 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-17 18:10:55 - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-12-17 18:10:55 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d19a83d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ab0b773, org.springframework.security.web.context.SecurityContextHolderFilter@741da569, org.springframework.security.web.header.HeaderWriterFilter@23e080a9, org.springframework.web.filter.CorsFilter@b5ceafa, org.springframework.security.web.authentication.logout.LogoutFilter@3456e3b3, com.moviebookingapp.security.JwtAuthenticationFilter@7fd4682, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4021732, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e2ff893, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28816098, org.springframework.security.web.session.SessionManagementFilter@65747311, org.springframework.security.web.access.ExceptionTranslationFilter@67205ec8, org.springframework.security.web.access.intercept.AuthorizationFilter@5a37c1b5]
+2025-12-17 18:10:56 - Tomcat started on port 8080 (http) with context path ''
+2025-12-17 18:10:56 - Started MovieBookingApplication in 12.792 seconds (process running for 13.33)
+2025-12-17 18:10:56 - Initializing sample data...
+2025-12-17 18:10:56 - select count(*) from movies m1_0
+2025-12-17 18:10:56 - Movies already exist, skipping movie initialization
+2025-12-17 18:10:56 - select count(*) from users u1_0
+2025-12-17 18:10:56 - Users already exist, skipping user initialization
+2025-12-17 18:10:56 - Sample data initialization completed
+2025-12-17 18:11:09 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-17 18:11:09 - Initializing Servlet 'dispatcherServlet'
+2025-12-17 18:11:09 - Completed initialization in 5 ms
+2025-12-17 18:11:09 - Securing GET /favicon.ico
+2025-12-17 18:11:09 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:09 - Cache miss for REQUEST dispatch to '/favicon.ico' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-12-17 18:11:09 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:09 - Securing GET /error
+2025-12-17 18:11:09 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:09 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:11 - Securing GET /favicon.ico
+2025-12-17 18:11:11 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:11 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:11 - Securing GET /error
+2025-12-17 18:11:11 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:11 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:18 - Securing OPTIONS /api/v1.0/moviebooking/login
+2025-12-17 18:11:18 - Securing POST /api/v1.0/moviebooking/login
+2025-12-17 18:11:18 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:18 - Secured POST /api/v1.0/moviebooking/login
+2025-12-17 18:11:18 - POST Login request received for user: admin
+2025-12-17 18:11:18 - Authenticating user: admin
+2025-12-17 18:11:18 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-17 18:11:18 - Failed to authenticate since password does not match stored value
+2025-12-17 18:11:18 - Authentication failed for user: admin
+2025-12-17 18:11:19 - Securing GET /favicon.ico
+2025-12-17 18:11:19 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:19 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:19 - Securing GET /error
+2025-12-17 18:11:19 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:19 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:58 - Securing OPTIONS /api/v1.0/moviebooking/login
+2025-12-17 18:11:58 - Securing POST /api/v1.0/moviebooking/login
+2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:58 - Secured POST /api/v1.0/moviebooking/login
+2025-12-17 18:11:58 - POST Login request received for user: john_doe
+2025-12-17 18:11:58 - Authenticating user: john_doe
+2025-12-17 18:11:58 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-17 18:11:58 - Failed to authenticate since password does not match stored value
+2025-12-17 18:11:58 - Authentication failed for user: john_doe
+2025-12-17 18:11:58 - Securing GET /favicon.ico
+2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:58 - Pre-authenticated entry point called. Rejecting access
+2025-12-17 18:11:58 - Securing GET /error
+2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
+2025-12-17 18:11:58 - Pre-authenticated entry point called. Rejecting access
