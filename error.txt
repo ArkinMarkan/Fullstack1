@@ -1,38 +1,28 @@
-2025-12-17 13:36:41 - Starting MovieBookingApplication using Java 17.0.12 with PID 12312 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 13:36:41 - The following 1 profile is active: "mysql"
-2025-12-17 13:36:42 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 13:36:42 - Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
-2025-12-17 13:36:44 - Tomcat initialized with port 8080 (http)
-2025-12-17 13:36:44 - Starting service [Tomcat]
-2025-12-17 13:36:44 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 13:36:44 - Initializing Spring embedded WebApplicationContext
-2025-12-17 13:36:44 - Root WebApplicationContext: initialization completed in 3006 ms
-2025-12-17 13:36:45 - MovieBookingHikariPool - Starting...
-2025-12-17 13:36:45 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@63814bbe
-2025-12-17 13:36:45 - MovieBookingHikariPool - Start completed.
-2025-12-17 13:36:45 - Creating database history table with name: moviebookingdb1.databasechangelog
-2025-12-17 13:36:46 - Reading from moviebookingdb1.databasechangelog
-2025-12-17 13:36:46 - Integer display width is deprecated and will be removed in a future release.
-2025-12-17 13:36:46 - Successfully acquired change log lock
-2025-12-17 13:36:46 - Using deploymentId: 5958806136
-2025-12-17 13:36:46 - Reading from moviebookingdb1.databasechangelog
-Running Changeset: db/changelog/001-create-initial-schema.sql::001-create-initial-schema::moviebookingapp
-2025-12-17 13:36:46 - Custom SQL executed
-2025-12-17 13:36:46 - ChangeSet db/changelog/001-create-initial-schema.sql::001-create-initial-schema::moviebookingapp ran successfully in 374ms
-Running Changeset: db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp
-2025-12-17 13:36:46 - Custom SQL executed
-2025-12-17 13:36:46 - ChangeSet db/changelog/002-insert-sample-data.sql::002-insert-sample-data::moviebookingapp ran successfully in 13ms
-Running Changeset: db/changelog/002-insert-sample-data.sql::003-insert-sample-users::moviebookingapp
-2025-12-17 13:36:46 - Custom SQL executed
-2025-12-17 13:36:46 - ChangeSet db/changelog/002-insert-sample-data.sql::003-insert-sample-users::moviebookingapp ran successfully in 10ms
+
+2025-12-17 13:43:25 - Starting MovieBookingApplication using Java 17.0.12 with PID 2816 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-17 13:43:25 - The following 1 profile is active: "mysql"
+2025-12-17 13:43:27 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-17 13:43:27 - Finished Spring Data repository scanning in 77 ms. Found 3 JPA repository interfaces.
+2025-12-17 13:43:29 - Tomcat initialized with port 8080 (http)
+2025-12-17 13:43:29 - Starting service [Tomcat]
+2025-12-17 13:43:29 - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-17 13:43:29 - Initializing Spring embedded WebApplicationContext
+2025-12-17 13:43:29 - Root WebApplicationContext: initialization completed in 3362 ms
+2025-12-17 13:43:29 - MovieBookingHikariPool - Starting...
+2025-12-17 13:43:30 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@1de08775
+2025-12-17 13:43:30 - MovieBookingHikariPool - Start completed.
+2025-12-17 13:43:30 - Reading from moviebookingdb.databasechangelog
+2025-12-17 13:43:30 - Successfully acquired change log lock
+2025-12-17 13:43:30 - Using deploymentId: 5959210888
+2025-12-17 13:43:30 - Reading from moviebookingdb.databasechangelog
 Running Changeset: db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp
-2025-12-17 13:36:46 - ChangeSet db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp encountered an exception.
-2025-12-17 13:36:46 - Update command encountered an exception.
-2025-12-17 13:36:46 - Successfully released change log lock
-2025-12-17 13:36:46 - Command execution complete
-2025-12-17 13:36:46 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
-2025-12-17 13:36:46 - Stopping service [Tomcat]
-2025-12-17 13:36:46 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 13:43:31 - ChangeSet db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp encountered an exception.
+2025-12-17 13:43:31 - Update command encountered an exception.
+2025-12-17 13:43:31 - Successfully released change log lock
+2025-12-17 13:43:31 - Command execution complete
+2025-12-17 13:43:31 - Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2025-12-17 13:43:31 - Stopping service [Tomcat]
+2025-12-17 13:43:31 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -42,7 +32,7 @@ Running Changeset: db/changelog/003-create-indexes.sql::003-create-indexes::movi
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:36:46 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+2025-12-17 13:43:31 - The web application [ROOT] appears to have started a thread named [MovieBookingHikariPool connection adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
  java.base@17.0.12/jdk.internal.misc.Unsafe.park(Native Method)
  java.base@17.0.12/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
  java.base@17.0.12/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
@@ -51,13 +41,13 @@ Running Changeset: db/changelog/003-create-indexes.sql::003-create-indexes::movi
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
  java.base@17.0.12/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
  java.base@17.0.12/java.lang.Thread.run(Thread.java:842)
-2025-12-17 13:36:46 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
-2025-12-17 13:36:46 - MovieBookingHikariPool - Shutdown initiated...
-2025-12-17 13:36:46 - MovieBookingHikariPool - Shutdown completed.
-2025-12-17 13:36:46 - 
+2025-12-17 13:43:31 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2025-12-17 13:43:31 - MovieBookingHikariPool - Shutdown initiated...
+2025-12-17 13:43:31 - MovieBookingHikariPool - Shutdown completed.
+2025-12-17 13:43:31 - 
 
 Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
-2025-12-17 13:36:46 - Application run failed
+2025-12-17 13:43:31 - Application run failed
 org.springframework.context.ApplicationContextException: Unable to start web server
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:165)
 	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:610)
@@ -76,7 +66,7 @@ Caused by: org.springframework.boot.web.server.WebServerException: Unable to sta
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:188)
 	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:162)
 	... 8 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter': Unsatisfied dependency expressed through field 'userDetailsService': Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:772)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
@@ -121,7 +111,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:488)
 	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123)
 	... 13 common frames omitted
-Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService': Unsatisfied dependency expressed through field 'userRepository': Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:772)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:752)
 	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145)
@@ -138,7 +128,7 @@ Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Err
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348)
 	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:769)
 	... 55 common frames omitted
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on DatabaseConfig: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.moviebookingapp.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1686)
@@ -170,7 +160,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 82 common frames omitted
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1 [Failed SQL: (1064) CREATE INDEX IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)]
+     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1775)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:601)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523)
@@ -183,7 +173,7 @@ Caused by: org.springframework.beans.factory.BeanCreationException: Error creati
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365)
 	... 94 common frames omitted
 Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1 [Failed SQL: (1064) CREATE INDEX IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)]
+     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
 	at liquibase.command.CommandScope.execute(CommandScope.java:237)
 	at liquibase.Liquibase.lambda$update$0(Liquibase.java:222)
 	at liquibase.Scope.lambda$child$0(Scope.java:184)
@@ -199,7 +189,7 @@ Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.Li
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1771)
 	... 103 common frames omitted
 Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1 [Failed SQL: (1064) CREATE INDEX IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)]
+     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
 	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:122)
 	at liquibase.command.core.AbstractUpdateCommandStep.lambda$doRun$1(AbstractUpdateCommandStep.java:105)
 	at liquibase.Scope.lambda$child$0(Scope.java:184)
@@ -217,7 +207,7 @@ Caused by: liquibase.exception.LiquibaseException: liquibase.exception.Migration
 	at liquibase.command.CommandScope.execute(CommandScope.java:214)
 	... 115 common frames omitted
 Caused by: liquibase.exception.MigrationFailedException: Migration failed for changeset db/changelog/003-create-indexes.sql::003-create-indexes::moviebookingapp:
-     Reason: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1 [Failed SQL: (1064) CREATE INDEX IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)]
+     Reason: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
 	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:785)
 	at liquibase.changelog.visitor.UpdateVisitor.executeAcceptedChange(UpdateVisitor.java:118)
 	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:68)
@@ -236,7 +226,7 @@ Caused by: liquibase.exception.MigrationFailedException: Migration failed for ch
 	at liquibase.Scope.child(Scope.java:254)
 	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:74)
 	... 129 common frames omitted
-Caused by: liquibase.exception.DatabaseException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1 [Failed SQL: (1064) CREATE INDEX IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)]
+Caused by: liquibase.exception.DatabaseException: Duplicate key name 'idx_movies_status' [Failed SQL: (1061) CREATE INDEX idx_movies_status ON movies(status)]
 	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:468)
 	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:77)
 	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:177)
@@ -244,7 +234,7 @@ Caused by: liquibase.exception.DatabaseException: You have an error in your SQL 
 	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1273)
 	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:744)
 	... 145 common frames omitted
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IF NOT EXISTS idx_movies_name_theatre ON movies(movie_name, theatre_name)' at line 1
+Caused by: java.sql.SQLSyntaxErrorException: Duplicate key name 'idx_movies_status'
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
 	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
 	at com.mysql.cj.jdbc.StatementImpl.executeInternal(StatementImpl.java:763)
@@ -253,4 +243,3 @@ Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL synta
 	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java)
 	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:462)
 	... 150 common frames omitted
-
