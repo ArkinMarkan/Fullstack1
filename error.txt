@@ -1,84 +1,14 @@
 {
-    "success": true,
-    "message": "Movies fetched successfully",
-    "data": [
-        {
-            "movie_name": "Avengers Endgame",
-            "theatre_name": "INOX Multiplex",
-            "id": 2,
-            "total_tickets": 150,
-            "available_tickets": 150,
-            "status": "BOOK_ASAP",
-            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
-            "genre": "Action/Sci-Fi",
-            "language": "English",
-            "duration": 181,
-            "rating": 8.4,
-            "show_times": [],
-            "ticket_price": 400.00,
-            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "Avengers Endgame",
-            "theatre_name": "PVR Cinemas",
-            "id": 1,
-            "total_tickets": 100,
-            "available_tickets": 100,
-            "status": "BOOK_ASAP",
-            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
-            "genre": "Action/Sci-Fi",
-            "language": "English",
-            "duration": 181,
-            "rating": 8.4,
-            "show_times": [],
-            "ticket_price": 350.00,
-            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "RRR",
-            "theatre_name": "Cinepolis",
-            "id": 4,
-            "total_tickets": 80,
-            "available_tickets": 80,
-            "status": "BOOK_ASAP",
-            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
-            "genre": "Action/Drama",
-            "language": "Telugu",
-            "duration": 187,
-            "rating": 8.1,
-            "show_times": [],
-            "ticket_price": 280.00,
-            "poster_url": "https://example.com/rrr-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "RRR",
-            "theatre_name": "PVR Cinemas",
-            "id": 3,
-            "total_tickets": 120,
-            "available_tickets": 120,
-            "status": "BOOK_ASAP",
-            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
-            "genre": "Action/Drama",
-            "language": "Telugu",
-            "duration": 187,
-            "rating": 8.1,
-            "show_times": [],
-            "ticket_price": 300.00,
-            "poster_url": "https://example.com/rrr-poster.jpg",
-            "available": true
-        }
-    ],
-    "timestamp": "2025-12-20T12:47:06.295642600"
+    "success": false,
+    "message": "An unexpected error occurred: Ambiguous handler methods mapped for '/api/v1.0/moviebooking/tickets/undefined': {public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getTicketByReference(java.lang.String), public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getUserTicketsByUsername(java.lang.String)}",
+    "timestamp": "2025-12-20T12:51:14.515314300",
+    "path": "uri=/api/v1.0/moviebooking/tickets/undefined"
 }
-
 Request URL
-http://localhost:8080/api/v1.0/moviebooking/all
+http://localhost:8080/api/v1.0/moviebooking/tickets/undefined
 Request Method
 GET
 Status Code
-200 OK
+500 Internal Server Error
 Remote Address
 [::1]:8080
