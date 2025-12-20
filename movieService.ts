@@ -10,8 +10,8 @@ const mapMovie = (m: any): Movie => ({
   // If backend returns objects with time/date, map to human-readable strings, else pass-through
   showTimes: Array.isArray(m.show_times)
     ? m.show_times.map((st: any) => {
-        const time = st.show_time ?? st.time ?? st;
-        const date = st.show_date ?? st.date;
+        const time = st.show_time ?? st.showTime ?? st.time ?? st;
+        const date = st.show_date ?? st.showDate ?? st.date;
         return date ? `${date} ${time}` : time;
       })
     : [],
@@ -27,6 +27,61 @@ const mapMovie = (m: any): Movie => ({
   modifiedDate: m.modified_date,
 });
 
+// Normalize showTimes payload to backend format and validate required fields
+const buildShowTimesPayload = (
+  movieData:
+    | (Omit<Movie, 'id'> & {
+        showTimesDetailed?: { time?: string; showTime?: string; date?: string; showDate?: string; show_date?: string; screenNumber?: number; screen_number?: number }[];
+        showDate?: string;
+      })
+    | (Partial<Movie> & {
+        showTimesDetailed?: { time?: string; showTime?: string; date?: string; showDate?: string; show_date?: string; screenNumber?: number; screen_number?: number }[];
+        showDate?: string;
+      })
+): Array<{ show_time: string; show_date: string; screen_number?: number }> => {
+  const detailed = (movieData as any).showTimesDetailed as
+    | { time?: string; showTime?: string; date?: string; showDate?: string; show_date?: string; screenNumber?: number; screen_number?: number }[]
+    | undefined;
+
+  const fallbackShowDate = (movieData as any).showDate;
+
+  let showTimesPayload: Array<{ show_time: string; show_date: string; screen_number?: number }> = [];
+
+  if (Array.isArray(detailed) && detailed.length > 0) {
+    showTimesPayload = detailed.map((st) => {
+      const show_time = (st as any).show_time ?? st.showTime ?? st.time;
+      const show_date = (st as any).show_date ?? st.showDate ?? st.date ?? fallbackShowDate;
+      const screen_number = (st as any).screen_number ?? st.screenNumber;
+      return { show_time: String(show_time ?? ''), show_date: String(show_date ?? ''), ...(screen_number != null ? { screen_number } : {}) };
+    });
+  } else {
+    const times = (movieData as any).showTimes as string[] | undefined;
+    showTimesPayload = (times ?? []).map((t) => ({
+      show_time: String(t ?? ''),
+      show_date: String(fallbackShowDate ?? ''),
+    }));
+  }
+
+  // Trim and validate
+  showTimesPayload = showTimesPayload.map((st) => ({
+    show_time: st.show_time?.toString().trim(),
+    show_date: st.show_date?.toString().trim(),
+    ...(st.screen_number != null ? { screen_number: st.screen_number } : {}),
+  }));
+
+  if (showTimesPayload.length === 0) {
+    throw new Error('At least one show time is required. Provide showTimesDetailed or showTimes + showDate.');
+  }
+  if (showTimesPayload.some((st) => !st.show_date)) {
+    throw new Error('Show date is required for each show time. Ensure date/showDate/show_date or top-level showDate is provided.');
+  }
+  if (showTimesPayload.some((st) => !st.show_time)) {
+    throw new Error('Show time is required for each show time entry.');
+  }
+
+  return showTimesPayload;
+};
+
 export const movieService = {
   getAllMovies: async (): Promise<Movie[]> => {
     const response = await apiClient.get('/all');
@@ -40,23 +95,20 @@ export const movieService = {
     return Array.isArray(list) ? list.map(mapMovie) : [];
   },
 
-  addMovie: async (movieData: Omit<Movie, 'id'> & { showTimesDetailed?: { time: string; date: string }[] }): Promise<Movie> => {
-    // Strict: require explicit showTimesDetailed or both showTimes & a show date provided by caller
-    const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
-      ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
-      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: (movieData as any).showDate }));
-
-    // Ensure no null show_date goes out
-    if (showTimesPayload.some(st => !st.show_date)) {
-      throw new Error('Show date is required for each show time.');
+  addMovie: async (
+    movieData: Omit<Movie, 'id'> & {
+      showTimesDetailed?: { time?: string; showTime?: string; date?: string; showDate?: string; show_date?: string; screenNumber?: number; screen_number?: number }[];
+      showDate?: string;
     }
+  ): Promise<Movie> => {
+    const show_times = buildShowTimesPayload(movieData);
 
     const payload = {
       movie_name: movieData.movieName,
       theatre_name: movieData.theatreName,
       total_tickets: movieData.totalTickets,
       available_tickets: movieData.availableTickets,
-      show_times: showTimesPayload,
+      show_times, // validated and normalized
       status: movieData.status,
       description: movieData.description,
       genre: movieData.genre,
@@ -75,22 +127,19 @@ export const movieService = {
   updateMovie: async (
     movieName: string,
     theatreName: string,
-    movieData: Partial<Movie> & { showTimesDetailed?: { time: string; date: string }[] }
-  ): Promise<Movie> => {
-    const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
-      ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
-      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: (movieData as any).showDate }));
-
-    if (showTimesPayload.some(st => !st.show_date)) {
-      throw new Error('Show date is required for each show time.');
+    movieData: Partial<Movie> & {
+      showTimesDetailed?: { time?: string; showTime?: string; date?: string; showDate?: string; show_date?: string; screenNumber?: number; screen_number?: number }[];
+      showDate?: string;
     }
+  ): Promise<Movie> => {
+    const show_times = buildShowTimesPayload(movieData);
 
     const payload = {
       movie_name: movieName,
       theatre_name: theatreName,
       total_tickets: movieData.totalTickets ?? movieData.availableTickets,
       available_tickets: movieData.availableTickets ?? movieData.totalTickets,
-      show_times: showTimesPayload,
+      show_times, // validated and normalized
       status: movieData.status,
       description: movieData.description,
       genre: movieData.genre,
