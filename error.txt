@@ -1,36 +1,16 @@
+{
+    "success": false,
+    "message": "An unexpected error occurred: could not execute batch [Field 'show_date' doesn't have a default value] [insert into movie_show_times (movie_name,theatre_name,show_time) values (?,?,?)]",
+    "timestamp": "2025-12-20T13:36:52.361155200",
+    "path": "uri=/api/v1.0/moviebooking/admin/add"
+}
+
 Request URL
 http://localhost:8080/api/v1.0/moviebooking/admin/add
 Request Method
 POST
 Status Code
-400 Bad Request
+500 Internal Server Error
 Remote Address
 [::1]:8080
 
-{movieName: "Krish", theatreName: "PVR INOX", totalTickets: 100, availableTickets: 100,…}
-availableTickets
-: 
-100
-movieName
-: 
-"Krish"
-showTimes
-: 
-["10:00 AM"]
-theatreName
-: 
-"PVR INOX"
-totalTickets
-: 
-100
-
-
-2025-12-20 13:29:00 - Request received to fetch all tickets
-2025-12-20 13:29:20 - Securing OPTIONS /api/v1.0/moviebooking/admin/add
-2025-12-20 13:29:20 - Securing POST /api/v1.0/moviebooking/admin/add
-2025-12-20 13:29:20 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
-2025-12-20 13:29:20 - Secured POST /api/v1.0/moviebooking/admin/add
-2025-12-20 13:29:20 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
-2025-12-20 13:29:20 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
-2025-12-20 13:29:20 - Admin add movie request for: null at null
-2025-12-20 13:29:20 - Adding new movie: null at theatre: null
