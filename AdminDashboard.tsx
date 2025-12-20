@@ -57,6 +57,7 @@ const AdminDashboard: React.FC = () => {
     theatreName: '',
     availableTickets: 100,
     showTimes: '',
+    showDate: '',
   });
   const [formLoading, setFormLoading] = useState(false);
   const { user } = useAuth();
@@ -90,6 +91,7 @@ const AdminDashboard: React.FC = () => {
       theatreName: '',
       availableTickets: 100,
       showTimes: '',
+      showDate: '',
     });
     setMovieDialog(true);
   };
@@ -101,6 +103,7 @@ const AdminDashboard: React.FC = () => {
       theatreName: movie.theatreName,
       availableTickets: movie.availableTickets,
       showTimes: movie.showTimes?.join(', ') || '',
+      showDate: '', // require admin to provide date when editing show times
     });
     setMovieDialog(true);
   };
@@ -113,15 +116,20 @@ const AdminDashboard: React.FC = () => {
         .map((time) => time.trim())
         .filter((time) => time.length > 0);
 
+      const showTimesDetailed = parsedShowTimes.map((t) => ({
+        time: t,
+        date: movieFormData.showDate || new Date().toISOString().slice(0, 10),
+      }));
+
       if (selectedMovie) {
-        // For edit: keep existing totalTickets, update availableTickets/showTimes
         const payload = {
           movieName: selectedMovie.movieName,
           theatreName: selectedMovie.theatreName,
           totalTickets: selectedMovie.totalTickets ?? movieFormData.availableTickets,
           availableTickets: movieFormData.availableTickets,
           showTimes: parsedShowTimes,
-        } as Partial<Movie>;
+          showTimesDetailed,
+        } as Partial<Movie> & { showTimesDetailed: { time: string; date: string }[] };
 
         await movieService.updateMovie(
           selectedMovie.movieName,
@@ -129,14 +137,14 @@ const AdminDashboard: React.FC = () => {
           payload
         );
       } else {
-        // For add: set totalTickets = availableTickets initially
         const payload = {
           movieName: movieFormData.movieName,
           theatreName: movieFormData.theatreName,
           totalTickets: movieFormData.availableTickets,
           availableTickets: movieFormData.availableTickets,
           showTimes: parsedShowTimes,
-        } as Omit<Movie, 'id'>;
+          showTimesDetailed,
+        } as Omit<Movie, 'id'> & { showTimesDetailed: { time: string; date: string }[] };
 
         await movieService.addMovie(payload);
       }
@@ -365,12 +373,25 @@ const AdminDashboard: React.FC = () => {
             <TextField
               fullWidth
               label="Show Times (comma-separated)"
-              placeholder="10:00 AM, 2:00 PM, 6:00 PM"
+              placeholder="10:00:00, 14:00:00, 18:00:00"
               value={movieFormData.showTimes}
               onChange={(e) =>
                 setMovieFormData(prev => ({ ...prev, showTimes: e.target.value }))
               }
-              helperText="Enter show times separated by commas"
+              helperText="Enter 24h times separated by commas"
+              sx={{ mb: 2 }}
+            />
+
+            <TextField
+              fullWidth
+              type="date"
+              label="Show Date"
+              InputLabelProps={{ shrink: true }}
+              value={movieFormData.showDate}
+              onChange={(e) =>
+                setMovieFormData(prev => ({ ...prev, showDate: e.target.value }))
+              }
+              helperText="Select the date for these show times"
             />
           </Box>
         </DialogContent>
