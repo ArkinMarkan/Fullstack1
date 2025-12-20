@@ -7,7 +7,14 @@ const mapMovie = (m: any): Movie => ({
   theatreName: m.theatre_name,
   totalTickets: m.total_tickets,
   availableTickets: m.available_tickets,
-  showTimes: m.show_times ?? [],
+  // If backend returns objects with time/date, map to human-readable strings, else pass-through
+  showTimes: Array.isArray(m.show_times)
+    ? m.show_times.map((st: any) => {
+        const time = st.show_time ?? st.time ?? st;
+        const date = st.show_date ?? st.date;
+        return date ? `${date} ${time}` : time;
+      })
+    : [],
   status: m.status,
   description: m.description,
   genre: m.genre,
@@ -33,14 +40,18 @@ export const movieService = {
     return Array.isArray(list) ? list.map(mapMovie) : [];
   },
 
-  addMovie: async (movieData: Omit<Movie, 'id'>): Promise<Movie> => {
-    // Backend expects snake_case fields
+  addMovie: async (movieData: Omit<Movie, 'id'> & { showTimesDetailed?: { time: string; date: string }[] }): Promise<Movie> => {
+    // Prepare show_times payload with required show_date
+    const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
+      ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
+      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: new Date().toISOString().slice(0, 10) }));
+
     const payload = {
       movie_name: movieData.movieName,
       theatre_name: movieData.theatreName,
       total_tickets: movieData.totalTickets,
       available_tickets: movieData.availableTickets,
-      show_times: movieData.showTimes ?? [],
+      show_times: showTimesPayload,
       status: movieData.status,
       description: movieData.description,
       genre: movieData.genre,
@@ -59,15 +70,18 @@ export const movieService = {
   updateMovie: async (
     movieName: string,
     theatreName: string,
-    movieData: Partial<Movie>
+    movieData: Partial<Movie> & { showTimesDetailed?: { time: string; date: string }[] }
   ): Promise<Movie> => {
-    // Build complete payload in snake_case
+    const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
+      ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
+      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: new Date().toISOString().slice(0, 10) }));
+
     const payload = {
       movie_name: movieName,
       theatre_name: theatreName,
       total_tickets: movieData.totalTickets ?? movieData.availableTickets,
       available_tickets: movieData.availableTickets ?? movieData.totalTickets,
-      show_times: movieData.showTimes ?? [],
+      show_times: showTimesPayload,
       status: movieData.status,
       description: movieData.description,
       genre: movieData.genre,
