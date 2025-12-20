@@ -1,41 +1,29 @@
-Uncaught runtime errors:
-×
-ERROR
-Cannot read properties of undefined (reading 'join')
-TypeError: Cannot read properties of undefined (reading 'join')
-    at http://localhost:3000/static/js/bundle.js:85088:54
-    at Array.map (<anonymous>)
-    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
-    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
-    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
-    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
-    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:46089:18)
-    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:46133:20)
-    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:46190:35)
-    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66089:11)
-ERROR
-Cannot read properties of undefined (reading 'join')
-TypeError: Cannot read properties of undefined (reading 'join')
-    at http://localhost:3000/static/js/bundle.js:85088:54
-    at Array.map (<anonymous>)
-    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
-    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
-    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
-    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
-    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:46089:18)
-    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:46133:20)
-    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:46190:35)
-    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66089:11)
-ERROR
-Cannot read properties of undefined (reading 'join')
-TypeError: Cannot read properties of undefined (reading 'join')
-    at http://localhost:3000/static/js/bundle.js:85088:54
-    at Array.map (<anonymous>)
-    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
-    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
-    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
-    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
-    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66067:18)
-    at performUnitOfWork (http://localhost:3000/static/js/bundle.js:65337:16)
-    at workLoopSync (http://localhost:3000/static/js/bundle.js:65260:9)
-    at renderRootSync (http://localhost:3000/static/js/bundle.js:65233:11)
+Request URL
+http://localhost:8080/api/v1.0/moviebooking/tickets/cancel/1
+Request Method
+DELETE
+Status Code
+400 Bad Request
+Remote Address
+[::1]:8080
+
+{success: false, message: "Ticket not found with booking reference: 1",…}
+message
+: 
+"Ticket not found with booking reference: 1"
+path
+: 
+"uri=/api/v1.0/moviebooking/tickets/cancel/1"
+success
+: 
+false
+timestamp
+: 
+"2025-12-20T17:07:13.629677600"
+
+{
+    "success": false,
+    "message": "Ticket not found with booking reference: 1",
+    "timestamp": "2025-12-20T17:07:13.629677600",
+    "path": "uri=/api/v1.0/moviebooking/tickets/cancel/1"
+}
