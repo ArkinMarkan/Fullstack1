@@ -1,10 +1,3 @@
-{
-    "success": false,
-    "message": "An unexpected error occurred: could not execute batch [Field 'show_date' doesn't have a default value] [insert into movie_show_times (movie_name,theatre_name,show_time) values (?,?,?)]",
-    "timestamp": "2025-12-20T13:36:52.361155200",
-    "path": "uri=/api/v1.0/moviebooking/admin/add"
-}
-
 Request URL
 http://localhost:8080/api/v1.0/moviebooking/admin/add
 Request Method
@@ -14,3 +7,37 @@ Status Code
 Remote Address
 [::1]:8080
 
+{success: false,…}
+message
+: 
+"An unexpected error occurred: could not execute batch [Column 'show_date' cannot be null] [insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)]; SQL [insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)]; constraint [null]"
+path
+: 
+"uri=/api/v1.0/moviebooking/admin/add"
+success
+: 
+false
+timestamp
+: 
+"2025-12-20T13:58:52.438179500"
+
+
+2025-12-20 14:00:17 - Request received to fetch all tickets
+2025-12-20 14:00:25 - Securing OPTIONS /api/v1.0/moviebooking/admin/add
+2025-12-20 14:00:25 - Securing POST /api/v1.0/moviebooking/admin/add
+2025-12-20 14:00:25 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 14:00:25 - Secured POST /api/v1.0/moviebooking/admin/add
+2025-12-20 14:00:25 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
+2025-12-20 14:00:25 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
+2025-12-20 14:00:25 - Admin add movie request for: KRISH 2 at PVR INOX
+2025-12-20 14:00:25 - Adding new movie: KRISH 2 at theatre: PVR INOX
+2025-12-20 14:00:25 - select m1_0.movie_name,m1_0.theatre_name,m1_0.available_tickets,m1_0.created_at,m1_0.description,m1_0.duration,m1_0.genre,m1_0.id,m1_0.language,m1_0.poster_url,m1_0.rating,m1_0.release_date,m1_0.status,m1_0.ticket_price,m1_0.total_tickets,m1_0.updated_at from movies m1_0 where m1_0.movie_name=? and m1_0.theatre_name=?
+2025-12-20 14:00:25 - select m1_0.movie_name,m1_0.theatre_name,m1_0.available_tickets,m1_0.created_at,m1_0.description,m1_0.duration,m1_0.genre,m1_0.id,m1_0.language,m1_0.poster_url,m1_0.rating,m1_0.release_date,m1_0.status,m1_0.ticket_price,m1_0.total_tickets,m1_0.updated_at from movies m1_0 where (m1_0.movie_name,m1_0.theatre_name) in ((?,?))
+2025-12-20 14:00:25 - Movie added successfully: KRISH 2 at PVR INOX
+2025-12-20 14:00:25 - insert into movies (available_tickets,created_at,description,duration,genre,id,language,poster_url,rating,release_date,status,ticket_price,total_tickets,updated_at,movie_name,theatre_name) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+2025-12-20 14:00:25 - update movies set available_tickets=?,description=?,duration=?,genre=?,id=?,language=?,poster_url=?,rating=?,release_date=?,status=?,ticket_price=?,total_tickets=?,updated_at=? where movie_name=? and theatre_name=?
+2025-12-20 14:00:25 - insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)
+2025-12-20 14:00:25 - HHH100503: On release of batch it still contained JDBC statements
+2025-12-20 14:00:25 - HHH100501: Exception executing batch [java.sql.BatchUpdateException: Column 'show_date' cannot be null], SQL: insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)
+2025-12-20 14:00:25 - SQL Error: 1048, SQLState: 23000
+2025-12-20 14:00:25 - Column 'show_date' cannot be null
