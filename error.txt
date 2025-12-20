@@ -1,122 +1,14 @@
-{
-    "success": true,
-    "message": "Movies fetched successfully",
-    "data": [
-        {
-            "movie_name": "Avengers Endgame",
-            "theatre_name": "INOX Multiplex",
-            "id": 2,
-            "total_tickets": 150,
-            "available_tickets": 150,
-            "status": "BOOK_ASAP",
-            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
-            "genre": "Action/Sci-Fi",
-            "language": "English",
-            "duration": 181,
-            "rating": 8.4,
-            "show_times": [],
-            "ticket_price": 400.00,
-            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "Avengers Endgame",
-            "theatre_name": "PVR Cinemas",
-            "id": 1,
-            "total_tickets": 100,
-            "available_tickets": 100,
-            "status": "BOOK_ASAP",
-            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
-            "genre": "Action/Sci-Fi",
-            "language": "English",
-            "duration": 181,
-            "rating": 8.4,
-            "show_times": [],
-            "ticket_price": 350.00,
-            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "RRR",
-            "theatre_name": "Cinepolis",
-            "id": 4,
-            "total_tickets": 80,
-            "available_tickets": 80,
-            "status": "BOOK_ASAP",
-            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
-            "genre": "Action/Drama",
-            "language": "Telugu",
-            "duration": 187,
-            "rating": 8.1,
-            "show_times": [],
-            "ticket_price": 280.00,
-            "poster_url": "https://example.com/rrr-poster.jpg",
-            "available": true
-        },
-        {
-            "movie_name": "RRR",
-            "theatre_name": "PVR Cinemas",
-            "id": 3,
-            "total_tickets": 120,
-            "available_tickets": 120,
-            "status": "BOOK_ASAP",
-            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
-            "genre": "Action/Drama",
-            "language": "Telugu",
-            "duration": 187,
-            "rating": 8.1,
-            "show_times": [],
-            "ticket_price": 300.00,
-            "poster_url": "https://example.com/rrr-poster.jpg",
-            "available": true
-        }
-    ],
-    "timestamp": "2025-12-20T13:00:50.716604500"
-}
-
-Request URL
-http://localhost:8080/api/v1.0/moviebooking/all
-Request Method
-GET
-Status Code
-200 OK
-Remote Address
-[::1]:8080
-
---------------------------
-	
-
-Request URL
-http://localhost:8080/api/v1.0/moviebooking/tickets/all
-Request Method
-GET
-Status Code
-200 OK
-Remote Address
-[::1]:8080
-
-
-{
-    "success": true,
-    "message": "All tickets fetched successfully",
-    "data": [],
-    "timestamp": "2025-12-20T13:00:50.780603800"
-}
-
-
 Request URL
 http://localhost:8080/api/v1.0/moviebooking/admin/add
 Request Method
 POST
 Status Code
-403 Forbidden
+400 Bad Request
 Remote Address
 [::1]:8080
 
-
-
-payload - {movieName: "Krish", theatreName: "INOX Multiplex", availableSeats: 100, showTimes: ["10:00AM"]}
-availableSeats
+{movieName: "Krish", theatreName: "PVR INOX", totalTickets: 100, availableTickets: 100,…}
+availableTickets
 : 
 100
 movieName
@@ -124,7 +16,21 @@ movieName
 "Krish"
 showTimes
 : 
-["10:00AM"]
+["10:00 AM"]
 theatreName
 : 
-"INOX Multiplex"
+"PVR INOX"
+totalTickets
+: 
+100
+
+
+2025-12-20 13:29:00 - Request received to fetch all tickets
+2025-12-20 13:29:20 - Securing OPTIONS /api/v1.0/moviebooking/admin/add
+2025-12-20 13:29:20 - Securing POST /api/v1.0/moviebooking/admin/add
+2025-12-20 13:29:20 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 13:29:20 - Secured POST /api/v1.0/moviebooking/admin/add
+2025-12-20 13:29:20 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
+2025-12-20 13:29:20 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.MovieController.addMovie(com.moviebookingapp.model.Movie); target is of class [com.moviebookingapp.controller.MovieController]
+2025-12-20 13:29:20 - Admin add movie request for: null at null
+2025-12-20 13:29:20 - Adding new movie: null at theatre: null
