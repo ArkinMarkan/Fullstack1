@@ -10,21 +10,21 @@
 -- ===============================================
 
 -- Create the main database
-CREATE DATABASE IF NOT EXISTS moviebookingdb 
+CREATE DATABASE IF NOT EXISTS moviebookingdb1
     CHARACTER SET utf8mb4 
     COLLATE utf8mb4_unicode_ci;
 
 -- Create application user with proper credentials (matching backend config)
 CREATE USER IF NOT EXISTS 'movieapp'@'localhost' IDENTIFIED BY 'MovieApp123!';
 
--- Grant all privileges on moviebookingdb to the application user
-GRANT ALL PRIVILEGES ON moviebookingdb.* TO 'movieapp'@'localhost';
+-- Grant all privileges on moviebookingdb1 to the application user
+GRANT ALL PRIVILEGES ON moviebookingdb1.* TO 'movieapp'@'localhost';
 
 -- Apply the privilege changes
 FLUSH PRIVILEGES;
 
--- Switch to the moviebookingdb database
-USE moviebookingdb;
+-- Switch to the moviebookingdb1 database
+USE moviebookingdb1;
 
 -- ===============================================
 -- STEP 2: CREATE CORE TABLES
@@ -178,8 +178,8 @@ CREATE INDEX idx_tickets_status ON tickets(status);
 CREATE INDEX idx_tickets_booking_date ON tickets(booking_date);
 
 -- Indexes for audit columns (for reporting)
-CREATE INDEX idx_movies_created ON movies(created_at);
-CREATE INDEX idx_users_created ON users(created_at);
+CREATE INDEX idx_movies_created ON movies(created_date);
+CREATE INDEX idx_users_created ON users(created_date);
 CREATE INDEX idx_tickets_created ON tickets(created_date);
 
 -- ===============================================
@@ -457,7 +457,7 @@ SELECT
     REFERENCED_TABLE_NAME,
     REFERENCED_COLUMN_NAME
 FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
-WHERE REFERENCED_TABLE_SCHEMA = 'moviebookingdb'
+WHERE REFERENCED_TABLE_SCHEMA = 'moviebookingdb1'
 AND REFERENCED_TABLE_NAME IS NOT NULL;
 
 -- ===============================================
@@ -466,11 +466,11 @@ AND REFERENCED_TABLE_NAME IS NOT NULL;
 
 -- 9.1 Create read-only user for reporting
 CREATE USER IF NOT EXISTS 'movieapp_readonly'@'localhost' IDENTIFIED BY 'ReadOnly123!';
-GRANT SELECT ON moviebookingdb.* TO 'movieapp_readonly'@'localhost';
+GRANT SELECT ON moviebookingdb1.* TO 'movieapp_readonly'@'localhost';
 
 -- 9.2 Create backup user
 CREATE USER IF NOT EXISTS 'movieapp_backup'@'localhost' IDENTIFIED BY 'Backup123!';
-GRANT SELECT, LOCK TABLES ON moviebookingdb.* TO 'movieapp_backup'@'localhost';
+GRANT SELECT, LOCK TABLES ON moviebookingdb1.* TO 'movieapp_backup'@'localhost';
 
 -- Apply security changes
 FLUSH PRIVILEGES;
@@ -480,7 +480,7 @@ FLUSH PRIVILEGES;
 -- ===============================================
 
 SELECT 'Movie Booking Database Setup Completed Successfully!' as Status;
-SELECT 'Database: moviebookingdb' as Info;
+SELECT 'Database: moviebookingdb1' as Info;
 SELECT 'Tables: users, movies (composite PK), tickets, movie_show_times' as Tables;
 SELECT 'Sample Data: 3 users, 4 movie entries (2 movies x 2 theatres)' as SampleData;
 SELECT 'Features: Stored procedures, triggers, views, indexes' as Features;
