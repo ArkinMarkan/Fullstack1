@@ -1,44 +1,41 @@
-Failed to fetch tickets. Please try again.
-
-Request URL
-http://localhost:8080/api/v1.0/moviebooking/tickets/all
-Request Method
-GET
-Status Code
-403 Forbidden
-Remote Address
-[::1]:8080
-
-success: false, message: "Access denied: Access Denied", timestamp: "2025-12-20T16:54:17.882051100",…}
-message
-: 
-"Access denied: Access Denied"
-path
-: 
-"uri=/api/v1.0/moviebooking/tickets/all"
-success
-: 
-false
-timestamp
-: 
-"2025-12-20T16:54:17.882051100"
-2025-12-20 16:54:17 - Securing OPTIONS /api/v1.0/moviebooking/tickets/all
-2025-12-20 16:54:17 - Securing GET /api/v1.0/moviebooking/tickets/all
-2025-12-20 16:54:17 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_date,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.modified_date from users u1_0 where u1_0.login_id=?
-2025-12-20 16:54:17 - Secured GET /api/v1.0/moviebooking/tickets/all
-2025-12-20 16:54:17 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getAllTickets(); target is of class [com.moviebookingapp.controller.TicketController]
-2025-12-20 16:54:17 - Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getAllTickets(); target is of class [com.moviebookingapp.controller.TicketController] with authorization manager org.springframework.security.config.annotation.method.configuration.DeferringObservationAuthorizationManager@5058258c and decision ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasRole('ADMIN')]
-2025-12-20 16:54:17 - Securing GET /api/v1.0/moviebooking/tickets/all
-2025-12-20 16:54:17 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_date,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.modified_date from users u1_0 where u1_0.login_id=?
-2025-12-20 16:54:17 - Secured GET /api/v1.0/moviebooking/tickets/all
-2025-12-20 16:54:17 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getAllTickets(); target is of class [com.moviebookingapp.controller.TicketController]
-2025-12-20 16:54:17 - Failed to authorize ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.getAllTickets(); target is of class [com.moviebookingapp.controller.TicketController] with authorization manager org.springframework.security.config.annotation.method.configuration.DeferringObservationAuthorizationManager@5058258c and decision ExpressionAuthorizationDecision [granted=false, expressionAttribute=hasRole('ADMIN')]
-
-]
-
-{
-    "success": false,
-    "message": "Access denied: Access Denied",
-    "timestamp": "2025-12-20T16:54:17.882051100",
-    "path": "uri=/api/v1.0/moviebooking/tickets/all"
-}
+Uncaught runtime errors:
+×
+ERROR
+Cannot read properties of undefined (reading 'join')
+TypeError: Cannot read properties of undefined (reading 'join')
+    at http://localhost:3000/static/js/bundle.js:85088:54
+    at Array.map (<anonymous>)
+    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
+    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
+    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
+    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
+    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:46089:18)
+    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:46133:20)
+    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:46190:35)
+    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66089:11)
+ERROR
+Cannot read properties of undefined (reading 'join')
+TypeError: Cannot read properties of undefined (reading 'join')
+    at http://localhost:3000/static/js/bundle.js:85088:54
+    at Array.map (<anonymous>)
+    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
+    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
+    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
+    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
+    at HTMLUnknownElement.callCallback (http://localhost:3000/static/js/bundle.js:46089:18)
+    at Object.invokeGuardedCallbackDev (http://localhost:3000/static/js/bundle.js:46133:20)
+    at invokeGuardedCallback (http://localhost:3000/static/js/bundle.js:46190:35)
+    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66089:11)
+ERROR
+Cannot read properties of undefined (reading 'join')
+TypeError: Cannot read properties of undefined (reading 'join')
+    at http://localhost:3000/static/js/bundle.js:85088:54
+    at Array.map (<anonymous>)
+    at MyTicketsPage (http://localhost:3000/static/js/bundle.js:85007:25)
+    at renderWithHooks (http://localhost:3000/static/js/bundle.js:55833:22)
+    at updateFunctionComponent (http://localhost:3000/static/js/bundle.js:59401:24)
+    at beginWork (http://localhost:3000/static/js/bundle.js:61120:20)
+    at beginWork$1 (http://localhost:3000/static/js/bundle.js:66067:18)
+    at performUnitOfWork (http://localhost:3000/static/js/bundle.js:65337:16)
+    at workLoopSync (http://localhost:3000/static/js/bundle.js:65260:9)
+    at renderRootSync (http://localhost:3000/static/js/bundle.js:65233:11)
