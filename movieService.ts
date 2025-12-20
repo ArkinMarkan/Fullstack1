@@ -1,49 +1,34 @@
 import { apiClient } from './api.ts';
-import { Movie } from '../types';
+import { Ticket } from '../types';
 
-const mapMovie = (m: any): Movie => ({
-  id: m.id,
-  movieName: m.movie_name,
-  theatreName: m.theatre_name,
-  totalTickets: m.total_tickets,
-  availableTickets: m.available_tickets,
-  showTimes: m.show_times ?? [],
-  status: m.status,
-  description: m.description,
-  genre: m.genre,
-  language: m.language,
-  duration: m.duration,
-  rating: m.rating,
-  posterUrl: m.poster_url,
-  releaseDate: m.release_date,
-  createdDate: m.created_date,
-  modifiedDate: m.modified_date,
-});
+interface TicketBookingRequest {
+  movieName: string;
+  theatreName: string;
+  numberOfTickets: number;
+  seatNumbers: string[];
+}
 
-export const movieService = {
-  getAllMovies: async (): Promise<Movie[]> => {
-    const response = await apiClient.get('/all');
-    const list = response.data.data as any[];
-    return Array.isArray(list) ? list.map(mapMovie) : [];
+export const ticketService = {
+  bookTicket: async (movieName: string, ticketData: TicketBookingRequest): Promise<Ticket> => {
+    const response = await apiClient.post(`/${encodeURIComponent(movieName)}/add`, ticketData);
+    return response.data.data;
   },
 
-  searchMovies: async (movieName: string): Promise<Movie[]> => {
-    const response = await apiClient.get(`/movies/search/${encodeURIComponent(movieName)}`);
-    const list = response.data.data as any[];
-    return Array.isArray(list) ? list.map(mapMovie) : [];
+  getUserTickets: async (username: string): Promise<Ticket[]> => {
+    if (!username) {
+      const response = await apiClient.get('/tickets/all');
+      return response.data.data;
+    }
+    const response = await apiClient.get(`/tickets/${encodeURIComponent(username)}`);
+    return response.data.data;
   },
 
-  addMovie: async (movieData: Omit<Movie, 'id'>): Promise<Movie> => {
-    const response = await apiClient.post('/admin/add', movieData);
-    return mapMovie(response.data.data);
+  getAllTickets: async (): Promise<Ticket[]> => {
+    const response = await apiClient.get('/tickets/all');
+    return response.data.data;
   },
 
-  updateTicketStatus: async (movieName: string, status: string): Promise<Movie> => {
-    const response = await apiClient.put(`/${encodeURIComponent(movieName)}/update/${status}?theatreName=${encodeURIComponent('PVR Cinemas')}`);
-    return mapMovie(response.data.data);
-  },
-
-  deleteMovie: async (movieName: string, theatreName: string): Promise<void> => {
-    await apiClient.delete(`/${encodeURIComponent(movieName)}/delete/${encodeURIComponent(theatreName)}`);
+  cancelTicket: async (bookingReference: string): Promise<void> => {
+    await apiClient.delete(`/tickets/cancel/${encodeURIComponent(bookingReference)}`);
   },
 };
