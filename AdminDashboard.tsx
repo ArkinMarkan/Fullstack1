@@ -116,9 +116,17 @@ const AdminDashboard: React.FC = () => {
         .map((time) => time.trim())
         .filter((time) => time.length > 0);
 
+      // Strict validation: require showDate and at least one show time
+      if (!movieFormData.showDate) {
+        throw new Error('Show Date is required.');
+      }
+      if (parsedShowTimes.length === 0) {
+        throw new Error('Please enter at least one show time.');
+      }
+
       const showTimesDetailed = parsedShowTimes.map((t) => ({
         time: t,
-        date: movieFormData.showDate || new Date().toISOString().slice(0, 10),
+        date: movieFormData.showDate, // do not default; strictly use provided date
       }));
 
       if (selectedMovie) {
@@ -402,7 +410,13 @@ const AdminDashboard: React.FC = () => {
           <Button
             onClick={handleSubmitMovie}
             variant="contained"
-            disabled={formLoading || !movieFormData.movieName || !movieFormData.theatreName}
+            disabled={
+              formLoading ||
+              !movieFormData.movieName ||
+              !movieFormData.theatreName ||
+              !movieFormData.showDate ||
+              movieFormData.showTimes.trim().length === 0
+            }
           >
             {formLoading ? <CircularProgress size={24} /> : 'Save'}
           </Button>
