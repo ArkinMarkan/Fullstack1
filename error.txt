@@ -30,3 +30,19 @@ Status Code
 500 Internal Server Error
 Remote Address
 [::1]:8080
+
+
+025-12-20 14:42:28 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 14:42:28 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 14:42:28 - Ticket booking request received for movie: Avengers Endgame by user: john_doe
+2025-12-20 14:42:28 - Booking 1 tickets for movie: Avengers Endgame at theatre: INOX Multiplex by user: john_doe
+2025-12-20 14:42:28 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 14:42:28 - select m1_0.movie_name,m1_0.theatre_name,m1_0.available_tickets,m1_0.created_at,m1_0.description,m1_0.duration,m1_0.genre,m1_0.id,m1_0.language,m1_0.poster_url,m1_0.rating,m1_0.release_date,m1_0.status,m1_0.ticket_price,m1_0.total_tickets,m1_0.updated_at from movies m1_0 where m1_0.movie_name=? and m1_0.theatre_name=?
+2025-12-20 14:42:42 - Securing OPTIONS /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 14:42:42 - Securing POST /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 14:42:42 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 14:42:42 - Secured POST /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 14:42:42 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 14:42:42 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 14:42:42 - Ticket booking request received for movie: Avengers Endgame by user: john_doe
+2025-12-20 14:42:42 - Booking 1 tickets for movie: Avengers Endgame at theatre: INOX Multiplex by user: john_doe
