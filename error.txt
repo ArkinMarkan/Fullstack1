@@ -46,3 +46,7 @@ Remote Address
 2025-12-20 14:42:42 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
 2025-12-20 14:42:42 - Ticket booking request received for movie: Avengers Endgame by user: john_doe
 2025-12-20 14:42:42 - Booking 1 tickets for movie: Avengers Endgame at theatre: INOX Multiplex by user: john_doe
+
+
+
+CREATE TABLE ticket_seat_numbers ( ticket_id BIGINT NOT NULL, seat_number VARCHAR(50) NOT NULL, PRIMARY KEY (ticket_id, seat_number), FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE ON UPDATE CASCADE );
