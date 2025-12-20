@@ -148,6 +148,8 @@ CREATE TABLE movie_show_times (
     UNIQUE KEY unique_show (movie_name, theatre_name, show_date, show_time)
 );
 
+CREATE TABLE ticket_seat_numbers ( ticket_id BIGINT NOT NULL, seat_number VARCHAR(50) NOT NULL, PRIMARY KEY (ticket_id, seat_number), FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE ON UPDATE CASCADE );
+
 -- ===============================================
 -- STEP 3: CREATE PERFORMANCE INDEXES
 -- ===============================================
