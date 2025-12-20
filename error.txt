@@ -1,10 +1,3 @@
-{
-    "success": false,
-    "message": "An unexpected error occurred: could not execute batch [Column 'show_date' cannot be null] [insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)]; SQL [insert into movie_show_times (movie_name,theatre_name,show_date,screen_number,show_time) values (?,?,?,?,?)]; constraint [null]",
-    "timestamp": "2025-12-20T14:19:25.672426",
-    "path": "uri=/api/v1.0/moviebooking/admin/add"
-}
-
 {movie_name: "KRISH 2", theatre_name: "PVR INOX", total_tickets: 100, available_tickets: 100,…}
 available_tickets
 : 
@@ -14,13 +7,23 @@ movie_name
 "KRISH 2"
 show_times
 : 
-[{show_time: "10:00 AM", show_date: "2025-12-20"}]
+[{show_time: "10:00:00", show_date: "2025-12-20"}]
+0
+: 
+{show_time: "10:00:00", show_date: "2025-12-20"}
+show_date
+: 
+"2025-12-20"
+show_time
+: 
+"10:00:00"
 theatre_name
 : 
 "PVR INOX"
 total_tickets
 : 
 100
+
 
 Request URL
 http://localhost:8080/api/v1.0/moviebooking/admin/add
