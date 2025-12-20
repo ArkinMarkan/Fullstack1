@@ -134,3 +134,21 @@ See https://nodejs.org/api/errors.html#errors_common_system_errors for more info
 2025-12-20 11:56:53 - Authenticating user: admin
 2025-12-20 11:56:53 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
 2025-12-20 11:56:53 - Authenticated user
+
+
+{success: false, message: "Validation failed",…}
+data
+: 
+{confirmPassword: "Confirm password is mandatory"}
+message
+: 
+"Validation failed"
+path
+: 
+"uri=/api/v1.0/moviebooking/register"
+success
+: 
+false
+timestamp
+: 
+"2025-12-20T11:59:22.019189300"
