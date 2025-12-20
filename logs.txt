@@ -1,0 +1,45 @@
+2025-12-20 15:44:42 [main] INFO  c.m.MovieBookingApplication - Starting MovieBookingApplication using Java 17.0.12 with PID 11128 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
+2025-12-20 15:44:42 [main] INFO  c.m.MovieBookingApplication - The following 1 profile is active: "mysql"
+2025-12-20 15:44:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-12-20 15:44:43 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 73 ms. Found 3 JPA repository interfaces.
+2025-12-20 15:44:45 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-12-20 15:44:45 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-12-20 15:44:45 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.16]
+2025-12-20 15:44:45 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-12-20 15:44:45 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2841 ms
+2025-12-20 15:44:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - MovieBookingHikariPool - Starting...
+2025-12-20 15:44:45 [main] INFO  com.zaxxer.hikari.pool.HikariPool - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@342a1f84
+2025-12-20 15:44:45 [main] INFO  com.zaxxer.hikari.HikariDataSource - MovieBookingHikariPool - Start completed.
+2025-12-20 15:44:45 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-12-20 15:44:45 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.3.1.Final
+2025-12-20 15:44:46 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-12-20 15:44:46 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-12-20 15:44:46 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-12-20 15:44:47 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-12-20 15:44:47 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-12-20 15:44:48 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-12-20 15:44:49 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-12-20 15:44:50 [main] INFO  o.s.b.a.e.web.EndpointLinksResolver - Exposing 3 endpoint(s) beneath base path '/actuator'
+2025-12-20 15:44:50 [main] INFO  o.s.s.web.DefaultSecurityFilterChain - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@689c5fdc, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5bc971ef, org.springframework.security.web.context.SecurityContextHolderFilter@1aa118f3, org.springframework.security.web.header.HeaderWriterFilter@139c2c19, org.springframework.web.filter.CorsFilter@16ec1438, org.springframework.security.web.authentication.logout.LogoutFilter@7edf6563, com.moviebookingapp.security.JwtAuthenticationFilter@70a7ebc9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2812c884, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@373ca236, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@ed24b1d, org.springframework.security.web.session.SessionManagementFilter@741da569, org.springframework.security.web.access.ExceptionTranslationFilter@3796062b, org.springframework.security.web.access.intercept.AuthorizationFilter@5ab0b773]
+2025-12-20 15:44:51 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path ''
+2025-12-20 15:44:51 [main] INFO  c.m.MovieBookingApplication - Started MovieBookingApplication in 10.109 seconds (process running for 10.628)
+2025-12-20 15:44:51 [main] INFO  c.m.s.DataInitializationService - Initializing sample data...
+2025-12-20 15:44:51 [main] DEBUG org.hibernate.SQL - select count(*) from movies m1_0
+2025-12-20 15:44:51 [main] INFO  c.m.s.DataInitializationService - Movies already exist, skipping movie initialization
+2025-12-20 15:44:51 [main] DEBUG org.hibernate.SQL - select count(*) from users u1_0
+2025-12-20 15:44:51 [main] INFO  c.m.s.DataInitializationService - Users already exist, skipping user initialization
+2025-12-20 15:44:51 [main] INFO  c.m.s.DataInitializationService - Sample data initialization completed
+2025-12-20 15:45:01 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-12-20 15:45:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-12-20 15:45:01 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-12-20 15:45:01 [http-nio-8080-exec-1] DEBUG o.s.security.web.FilterChainProxy - Securing OPTIONS /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Securing POST /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 15:45:02 [http-nio-8080-exec-2] WARN  o.s.w.s.h.HandlerMappingIntrospector - Cache miss for REQUEST dispatch to '/api/v1.0/moviebooking/Avengers%20Endgame/add' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG o.s.security.web.FilterChainProxy - Secured POST /api/v1.0/moviebooking/Avengers Endgame/add
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG o.s.s.a.m.AuthorizationManagerBeforeMethodInterceptor - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
+2025-12-20 15:45:02 [http-nio-8080-exec-2] INFO  c.m.controller.TicketController - Ticket booking request received for movie: Avengers Endgame by user: john_doe | payload: TicketBookingDto{movieName='Avengers Endgame', theatreName='INOX Multiplex', numberOfTickets=1, seatNumbers=[A1]}
+2025-12-20 15:45:02 [http-nio-8080-exec-2] INFO  c.m.service.TicketService - Booking 1 tickets for movie: Avengers Endgame at theatre: INOX Multiplex by user: john_doe
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 15:45:02 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select m1_0.movie_name,m1_0.theatre_name,m1_0.available_tickets,m1_0.created_at,m1_0.description,m1_0.duration,m1_0.genre,m1_0.id,m1_0.language,m1_0.poster_url,m1_0.rating,m1_0.release_date,m1_0.status,m1_0.ticket_price,m1_0.total_tickets,m1_0.updated_at from movies m1_0 where m1_0.movie_name=? and m1_0.theatre_name=?
