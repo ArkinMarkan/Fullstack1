@@ -10,12 +10,12 @@ interface TicketBookingRequest {
 
 export const ticketService = {
   bookTicket: async (movieName: string, ticketData: TicketBookingRequest): Promise<Ticket> => {
-    // Build payload in snake_case to match backend validation
+    // Ensure seat count matches seats to avoid validation errors
     const payload = {
-      movie_name: ticketData.movieName ?? movieName,
-      theatre_name: ticketData.theatreName,
-      number_of_tickets: ticketData.numberOfTickets,
-      seat_numbers: ticketData.seatNumbers,
+      movieName: ticketData.movieName ?? movieName,
+      theatreName: ticketData.theatreName,
+      numberOfTickets: ticketData.numberOfTickets ?? ticketData.seatNumbers?.length,
+      seatNumbers: ticketData.seatNumbers,
     };
     const response = await apiClient.post(`/${encodeURIComponent(movieName)}/add`, payload);
     return response.data.data;
