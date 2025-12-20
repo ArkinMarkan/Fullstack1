@@ -1,35 +1,35 @@
-{movie_name: "KRISH 2", theatre_name: "PVR INOX", total_tickets: 100, available_tickets: 100,…}
-available_tickets
-: 
-100
-movie_name
-: 
-"KRISH 2"
-show_times
-: 
-[{show_time: "10:00:00", show_date: "2025-12-20"}]
-0
-: 
-{show_time: "10:00:00", show_date: "2025-12-20"}
-show_date
-: 
-"2025-12-20"
-show_time
-: 
-"10:00:00"
-theatre_name
-: 
-"PVR INOX"
-total_tickets
-: 
-100
-
-
 Request URL
-http://localhost:8080/api/v1.0/moviebooking/admin/add
+http://localhost:8080/api/v1.0/moviebooking/Avengers%20Endgame/add
 Request Method
 POST
 Status Code
-500 Internal Server Error
-Remote Address
-[::1]:8080
+
+{movieName: "Avengers Endgame", theatreName: "INOX Multiplex", numberOfTickets: 1, seatNumbers: ["A1"]}
+movieName
+: 
+"Avengers Endgame"
+numberOfTickets
+: 
+1
+seatNumbers
+: 
+["A1"]
+0
+: 
+"A1"
+theatreName
+: 
+"INOX Multiplex"
+
+{
+    "success": false,
+    "message": "Validation failed",
+    "data": {
+        "seatNumbers": "Seat numbers are mandatory",
+        "numberOfTickets": "Number of tickets is mandatory",
+        "theatreName": "Theatre name is mandatory",
+        "movieName": "Movie name is mandatory"
+    },
+    "timestamp": "2025-12-20T14:37:04.199499300",
+    "path": "uri=/api/v1.0/moviebooking/Avengers%20Endgame/add"
+}
