@@ -13,6 +13,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.math.BigDecimal;
+import jakarta.persistence.Convert;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Ticket entity representing booked tickets with MySQL/JPA
@@ -48,12 +53,11 @@ public class Ticket {
     @Max(value = 10, message = "Maximum 10 tickets can be booked at once")
     @Column(name = "number_of_tickets", nullable = false)
     private Integer numberOfTickets;
-    
-    @ElementCollection
-    @CollectionTable(name = "ticket_seat_numbers", 
-                    joinColumns = @JoinColumn(name = "ticket_id"))
-    @Column(name = "seat_number")
+
+    // Store seat numbers as JSON in tickets.seat_numbers
     @NotNull(message = "Seat numbers are mandatory")
+    @Column(name = "seat_numbers", columnDefinition = "JSON")
+    @Convert(converter = SeatNumbersJsonConverter.class)
     private List<String> seatNumbers;
     
     @NotNull(message = "User ID is mandatory")
@@ -73,13 +77,19 @@ public class Ticket {
     
     @Column(name = "booking_reference", nullable = false, length = 20)
     private String bookingReference;
-    
-    @Column(name = "show_date_time")
+
+    // Avoid creating extra column not defined in SQL
+    @Transient
     private LocalDateTime showDateTime;
     
     @CreatedDate
     @Column(name = "booking_date", nullable = false, updatable = false)
     private LocalDateTime bookedAt;
+
+    // Add created_date to match SQL audit columns
+    @CreatedDate
+    @Column(name = "created_date", updatable = false)
+    private LocalDateTime createdDate;
     
     @LastModifiedDate
     @Column(name = "modified_date")
@@ -202,6 +212,14 @@ public class Ticket {
         this.bookedAt = bookedAt;
     }
     
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+    
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+    
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }
@@ -252,5 +270,27 @@ public class Ticket {
                 ", status=" + status +
                 ", bookingReference='" + bookingReference + '\'' +
                 '}';
+    }
+
+    // JSON Converter for List<String> <-> JSON stored in seat_numbers
+    @Converter
+    public static class SeatNumbersJsonConverter implements AttributeConverter<List<String>, String> {
+        private static final ObjectMapper mapper = new ObjectMapper();
+        @Override
+        public String convertToDatabaseColumn(List<String> attribute) {
+            try {
+                return attribute == null ? null : mapper.writeValueAsString(attribute);
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Failed to serialize seat numbers", e);
+            }
+        }
+        @Override
+        public List<String> convertToEntityAttribute(String dbData) {
+            try {
+                return dbData == null ? null : mapper.readValue(dbData, new TypeReference<List<String>>(){});
+            } catch (Exception e) {
+                throw new IllegalArgumentException("Failed to deserialize seat numbers", e);
+            }
+        }
     }
 }
