@@ -12,3 +12,12 @@ Status Code
 500 Internal Server Error
 Remote Address
 [::1]:8080
+
+2025-12-20 12:51:14 - Securing OPTIONS /api/v1.0/moviebooking/tickets/undefined
+2025-12-20 12:51:14 - Securing OPTIONS /api/v1.0/moviebooking/tickets/undefined
+2025-12-20 12:51:14 - Securing GET /api/v1.0/moviebooking/tickets/undefined
+2025-12-20 12:51:14 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 12:51:14 - Secured GET /api/v1.0/moviebooking/tickets/undefined
+2025-12-20 12:51:14 - Securing GET /api/v1.0/moviebooking/tickets/undefined
+2025-12-20 12:51:14 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
+2025-12-20 12:51:14 - Secured GET /api/v1.0/moviebooking/tickets/undefined
