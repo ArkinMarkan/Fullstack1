@@ -1,154 +1,84 @@
+{
+    "success": true,
+    "message": "Movies fetched successfully",
+    "data": [
+        {
+            "movie_name": "Avengers Endgame",
+            "theatre_name": "INOX Multiplex",
+            "id": 2,
+            "total_tickets": 150,
+            "available_tickets": 150,
+            "status": "BOOK_ASAP",
+            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
+            "genre": "Action/Sci-Fi",
+            "language": "English",
+            "duration": 181,
+            "rating": 8.4,
+            "show_times": [],
+            "ticket_price": 400.00,
+            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
+            "available": true
+        },
+        {
+            "movie_name": "Avengers Endgame",
+            "theatre_name": "PVR Cinemas",
+            "id": 1,
+            "total_tickets": 100,
+            "available_tickets": 100,
+            "status": "BOOK_ASAP",
+            "description": "The final battle against Thanos in the epic conclusion to the Infinity Saga",
+            "genre": "Action/Sci-Fi",
+            "language": "English",
+            "duration": 181,
+            "rating": 8.4,
+            "show_times": [],
+            "ticket_price": 350.00,
+            "poster_url": "https://example.com/avengers-endgame-poster.jpg",
+            "available": true
+        },
+        {
+            "movie_name": "RRR",
+            "theatre_name": "Cinepolis",
+            "id": 4,
+            "total_tickets": 80,
+            "available_tickets": 80,
+            "status": "BOOK_ASAP",
+            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
+            "genre": "Action/Drama",
+            "language": "Telugu",
+            "duration": 187,
+            "rating": 8.1,
+            "show_times": [],
+            "ticket_price": 280.00,
+            "poster_url": "https://example.com/rrr-poster.jpg",
+            "available": true
+        },
+        {
+            "movie_name": "RRR",
+            "theatre_name": "PVR Cinemas",
+            "id": 3,
+            "total_tickets": 120,
+            "available_tickets": 120,
+            "status": "BOOK_ASAP",
+            "description": "A fictional story about two legendary revolutionaries and their journey away from home before they started fighting for their country in the 1920s",
+            "genre": "Action/Drama",
+            "language": "Telugu",
+            "duration": 187,
+            "rating": 8.1,
+            "show_times": [],
+            "ticket_price": 300.00,
+            "poster_url": "https://example.com/rrr-poster.jpg",
+            "available": true
+        }
+    ],
+    "timestamp": "2025-12-20T12:47:06.295642600"
+}
 
-2025-12-17 18:10:44 - Starting MovieBookingApplication using Java 17.0.12 with PID 9440 (C:\Users\Administrator\Downloads\FSE\backend\target\classes started by Administrator in C:\Users\Administrator\Downloads\FSE\backend)
-2025-12-17 18:10:44 - The following 1 profile is active: "mysql"
-2025-12-17 18:10:46 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-12-17 18:10:46 - Finished Spring Data repository scanning in 77 ms. Found 3 JPA repository interfaces.
-2025-12-17 18:10:48 - Tomcat initialized with port 8080 (http)
-2025-12-17 18:10:48 - Starting service [Tomcat]
-2025-12-17 18:10:48 - Starting Servlet engine: [Apache Tomcat/10.1.16]
-2025-12-17 18:10:48 - Initializing Spring embedded WebApplicationContext
-2025-12-17 18:10:48 - Root WebApplicationContext: initialization completed in 3848 ms
-2025-12-17 18:10:48 - MovieBookingHikariPool - Starting...
-2025-12-17 18:10:48 - MovieBookingHikariPool - Added connection com.mysql.cj.jdbc.ConnectionImpl@43b6cb1c
-2025-12-17 18:10:48 - MovieBookingHikariPool - Start completed.
-2025-12-17 18:10:49 - HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-12-17 18:10:49 - HHH000412: Hibernate ORM core version 6.3.1.Final
-2025-12-17 18:10:49 - HHH000026: Second-level cache disabled
-2025-12-17 18:10:49 - No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-12-17 18:10:49 - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-12-17 18:10:51 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-12-17 18:10:51 - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-12-17 18:10:51 - Hibernate is in classpath; If applicable, HQL parser will be used.
-2025-12-17 18:10:54 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-12-17 18:10:55 - Exposing 3 endpoint(s) beneath base path '/actuator'
-2025-12-17 18:10:55 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1d19a83d, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ab0b773, org.springframework.security.web.context.SecurityContextHolderFilter@741da569, org.springframework.security.web.header.HeaderWriterFilter@23e080a9, org.springframework.web.filter.CorsFilter@b5ceafa, org.springframework.security.web.authentication.logout.LogoutFilter@3456e3b3, com.moviebookingapp.security.JwtAuthenticationFilter@7fd4682, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4021732, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e2ff893, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28816098, org.springframework.security.web.session.SessionManagementFilter@65747311, org.springframework.security.web.access.ExceptionTranslationFilter@67205ec8, org.springframework.security.web.access.intercept.AuthorizationFilter@5a37c1b5]
-2025-12-17 18:10:56 - Tomcat started on port 8080 (http) with context path ''
-2025-12-17 18:10:56 - Started MovieBookingApplication in 12.792 seconds (process running for 13.33)
-2025-12-17 18:10:56 - Initializing sample data...
-2025-12-17 18:10:56 - select count(*) from movies m1_0
-2025-12-17 18:10:56 - Movies already exist, skipping movie initialization
-2025-12-17 18:10:56 - select count(*) from users u1_0
-2025-12-17 18:10:56 - Users already exist, skipping user initialization
-2025-12-17 18:10:56 - Sample data initialization completed
-2025-12-17 18:11:09 - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-12-17 18:11:09 - Initializing Servlet 'dispatcherServlet'
-2025-12-17 18:11:09 - Completed initialization in 5 ms
-2025-12-17 18:11:09 - Securing GET /favicon.ico
-2025-12-17 18:11:09 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:09 - Cache miss for REQUEST dispatch to '/favicon.ico' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
-2025-12-17 18:11:09 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:09 - Securing GET /error
-2025-12-17 18:11:09 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:09 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:11 - Securing GET /favicon.ico
-2025-12-17 18:11:11 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:11 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:11 - Securing GET /error
-2025-12-17 18:11:11 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:11 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:18 - Securing OPTIONS /api/v1.0/moviebooking/login
-2025-12-17 18:11:18 - Securing POST /api/v1.0/moviebooking/login
-2025-12-17 18:11:18 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:18 - Secured POST /api/v1.0/moviebooking/login
-2025-12-17 18:11:18 - POST Login request received for user: admin
-2025-12-17 18:11:18 - Authenticating user: admin
-2025-12-17 18:11:18 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
-2025-12-17 18:11:18 - Failed to authenticate since password does not match stored value
-2025-12-17 18:11:18 - Authentication failed for user: admin
-2025-12-17 18:11:19 - Securing GET /favicon.ico
-2025-12-17 18:11:19 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:19 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:19 - Securing GET /error
-2025-12-17 18:11:19 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:19 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:58 - Securing OPTIONS /api/v1.0/moviebooking/login
-2025-12-17 18:11:58 - Securing POST /api/v1.0/moviebooking/login
-2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:58 - Secured POST /api/v1.0/moviebooking/login
-2025-12-17 18:11:58 - POST Login request received for user: john_doe
-2025-12-17 18:11:58 - Authenticating user: john_doe
-2025-12-17 18:11:58 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
-2025-12-17 18:11:58 - Failed to authenticate since password does not match stored value
-2025-12-17 18:11:58 - Authentication failed for user: john_doe
-2025-12-17 18:11:58 - Securing GET /favicon.ico
-2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:58 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:11:58 - Securing GET /error
-2025-12-17 18:11:58 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:11:58 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:13:57 - Securing OPTIONS /api/v1.0/moviebooking/login
-2025-12-17 18:13:57 - Securing POST /api/v1.0/moviebooking/login
-2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:13:57 - Secured POST /api/v1.0/moviebooking/login
-2025-12-17 18:13:57 - POST Login request received for user: admin
-2025-12-17 18:13:57 - Authenticating user: admin
-2025-12-17 18:13:57 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
-2025-12-17 18:13:57 - Failed to authenticate since password does not match stored value
-2025-12-17 18:13:57 - Authentication failed for user: admin
-2025-12-17 18:13:57 - Securing GET /favicon.ico
-2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:13:57 - Pre-authenticated entry point called. Rejecting access
-2025-12-17 18:13:57 - Securing GET /error
-2025-12-17 18:13:57 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-17 18:13:57 - Pre-authenticated entry point called. Rejecting access
-
-
-Update to expected:
-mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$xJrm8VNl3S0Sp7ub.IWj8eaKJjZNHhQD9X3iY6A.9sTsE.T.D5E16' WHERE login_id='admin';"
-mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; UPDATE users SET password='$2a$10$kKW/U8xBKCv8zJoHhqK2HOTgQ4y6J0Ykl4jE8VxDpJgKQPJNpQhzq' WHERE login_id='john_doe';"
-
-Check: SELECT login_id, LENGTH(password) AS len, password FROM users WHERE login_id IN ('admin','john_doe');
-Expected len = 60 for bcrypt. If shorter, the column is truncating; ALTER TABLE users MODIFY password VARCHAR(100) NOT NULL; then re-update the hash.
-Verify in MySQL:
-In PowerShell: mysql -u movieapp -pMovieApp123! -e "SELECT USER(), CURRENT_USER();"
-List users (as root): mysql -u root -p -e "SELECT user, host FROM mysql.user WHERE user='movieapp';"
-Test DB access: mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; SHOW TABLES;"
-mysql -u movieapp -pMovieApp123! -e "USE moviebookingdb; SHOW TABLES;"
-GRANT ALL PRIVILEGES ON moviebookingdb.* TO 'movieapp'@'localhost'; FLUSH PRIVILEGES;
-
-
-An unexpected error occurred: The signing key's size is 472 bits which is not secure enough for the HS512 algorithm. The JWT JWA Specification (RFC 7518, Section 3.2) states that keys used with HS512 MUST have a size >= 512 bits (the key size must be greater than or equal to the hash output size). Consider using the io.jsonwebtoken.security.Keys class's 'secretKeyFor(SignatureAlgorithm.HS512)' method to create a key guaranteed to be secure enough for HS512. See https://tools.ietf.org/html/rfc7518#section-3.2 for more information.
-
-Note that the development build is not optimized.      
-To create a production build, use npm run build.
-
-webpack compiled successfully
-(node:9152) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
-Proxy error: Could not proxy request /favicon.ico from localhost:3000 to http://localhost:8080/.
-See https://nodejs.org/api/errors.html#errors_common_system_errors for more information (ECONNREFUSED).
-
-2025-12-20 11:56:51 - Initializing Servlet 'dispatcherServlet'
-2025-12-20 11:56:51 - Completed initialization in 4 ms
-2025-12-20 11:56:51 - Securing GET /favicon.ico
-2025-12-20 11:56:51 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-20 11:56:51 - Cache miss for REQUEST dispatch to '/favicon.ico' (previous null). Performing MatchableHandlerMapping lookup. This is logged once only at WARN level, and every time at TRACE.
-2025-12-20 11:56:51 - Pre-authenticated entry point called. Rejecting access
-2025-12-20 11:56:51 - Securing GET /error
-2025-12-20 11:56:51 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-20 11:56:51 - Pre-authenticated entry point called. Rejecting access
-2025-12-20 11:56:52 - Securing OPTIONS /api/v1.0/moviebooking/login
-2025-12-20 11:56:52 - Securing POST /api/v1.0/moviebooking/login
-2025-12-20 11:56:52 - Set SecurityContextHolder to anonymous SecurityContext
-2025-12-20 11:56:52 - Secured POST /api/v1.0/moviebooking/login
-2025-12-20 11:56:53 - POST Login request received for user: admin
-2025-12-20 11:56:53 - Authenticating user: admin
-2025-12-20 11:56:53 - select u1_0.id,u1_0.account_non_expired,u1_0.account_non_locked,u1_0.contact_number,u1_0.created_at,u1_0.credentials_non_expired,u1_0.email,u1_0.enabled,u1_0.first_name,u1_0.is_active,u1_0.is_email_verified,u1_0.last_name,u1_0.login_id,u1_0.password,u1_0.role,u1_0.updated_at from users u1_0 where u1_0.login_id=?
-2025-12-20 11:56:53 - Authenticated user
-
-
-{success: false, message: "Validation failed",…}
-data
-: 
-{confirmPassword: "Confirm password is mandatory"}
-message
-: 
-"Validation failed"
-path
-: 
-"uri=/api/v1.0/moviebooking/register"
-success
-: 
-false
-timestamp
-: 
-"2025-12-20T11:59:22.019189300"
+Request URL
+http://localhost:8080/api/v1.0/moviebooking/all
+Request Method
+GET
+Status Code
+200 OK
+Remote Address
+[::1]:8080
