@@ -34,7 +34,25 @@ export const movieService = {
   },
 
   addMovie: async (movieData: Omit<Movie, 'id'>): Promise<Movie> => {
-    const response = await apiClient.post('/admin/add', movieData);
+    // Backend expects snake_case fields
+    const payload = {
+      movie_name: movieData.movieName,
+      theatre_name: movieData.theatreName,
+      total_tickets: movieData.totalTickets,
+      available_tickets: movieData.availableTickets,
+      show_times: movieData.showTimes ?? [],
+      status: movieData.status,
+      description: movieData.description,
+      genre: movieData.genre,
+      language: movieData.language,
+      duration: movieData.duration,
+      rating: movieData.rating,
+      poster_url: movieData.posterUrl,
+      release_date: movieData.releaseDate,
+      created_date: movieData.createdDate,
+      modified_date: movieData.modifiedDate,
+    };
+    const response = await apiClient.post('/admin/add', payload);
     return mapMovie(response.data.data);
   },
 
@@ -43,24 +61,26 @@ export const movieService = {
     theatreName: string,
     movieData: Partial<Movie>
   ): Promise<Movie> => {
-    const payload: Omit<Movie, 'id'> = {
-      movieName,
-      theatreName,
-      totalTickets: (movieData.totalTickets ?? movieData.availableTickets) as number,
-      availableTickets: (movieData.availableTickets ?? movieData.totalTickets) as number,
-      showTimes: movieData.showTimes ?? [],
+    // Build complete payload in snake_case
+    const payload = {
+      movie_name: movieName,
+      theatre_name: theatreName,
+      total_tickets: movieData.totalTickets ?? movieData.availableTickets,
+      available_tickets: movieData.availableTickets ?? movieData.totalTickets,
+      show_times: movieData.showTimes ?? [],
       status: movieData.status,
       description: movieData.description,
       genre: movieData.genre,
       language: movieData.language,
       duration: movieData.duration,
       rating: movieData.rating,
-      posterUrl: movieData.posterUrl,
-      releaseDate: movieData.releaseDate,
-      createdDate: movieData.createdDate,
-      modifiedDate: movieData.modifiedDate,
-    } as unknown as Omit<Movie, 'id'>;
+      poster_url: movieData.posterUrl,
+      release_date: movieData.releaseDate,
+      created_date: movieData.createdDate,
+      modified_date: movieData.modifiedDate,
+    };
 
+    // Current backend controller supports add. For edit, backend may require delete then re-add.
     await apiClient.delete(`/${encodeURIComponent(movieName)}/delete/${encodeURIComponent(theatreName)}`);
     const response = await apiClient.post('/admin/add', payload);
     return mapMovie(response.data.data);
