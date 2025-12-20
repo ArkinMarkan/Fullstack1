@@ -41,10 +41,15 @@ export const movieService = {
   },
 
   addMovie: async (movieData: Omit<Movie, 'id'> & { showTimesDetailed?: { time: string; date: string }[] }): Promise<Movie> => {
-    // Prepare show_times payload with required show_date
+    // Strict: require explicit showTimesDetailed or both showTimes & a show date provided by caller
     const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
       ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
-      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: new Date().toISOString().slice(0, 10) }));
+      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: (movieData as any).showDate }));
+
+    // Ensure no null show_date goes out
+    if (showTimesPayload.some(st => !st.show_date)) {
+      throw new Error('Show date is required for each show time.');
+    }
 
     const payload = {
       movie_name: movieData.movieName,
@@ -74,7 +79,11 @@ export const movieService = {
   ): Promise<Movie> => {
     const showTimesPayload = (movieData.showTimesDetailed && movieData.showTimesDetailed.length > 0)
       ? movieData.showTimesDetailed.map(st => ({ show_time: st.time, show_date: st.date }))
-      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: new Date().toISOString().slice(0, 10) }));
+      : (movieData.showTimes ?? []).map((t) => ({ show_time: t, show_date: (movieData as any).showDate }));
+
+    if (showTimesPayload.some(st => !st.show_date)) {
+      throw new Error('Show date is required for each show time.');
+    }
 
     const payload = {
       movie_name: movieName,
@@ -94,7 +103,6 @@ export const movieService = {
       modified_date: movieData.modifiedDate,
     };
 
-    // Current backend controller supports add. For edit, backend may require delete then re-add.
     await apiClient.delete(`/${encodeURIComponent(movieName)}/delete/${encodeURIComponent(theatreName)}`);
     const response = await apiClient.post('/admin/add', payload);
     return mapMovie(response.data.data);
