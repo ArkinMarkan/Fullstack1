@@ -27,3 +27,8 @@ timestamp
     "timestamp": "2025-12-20T17:07:13.629677600",
     "path": "uri=/api/v1.0/moviebooking/tickets/cancel/1"
 }
+
+
+# id, booking_date, booking_reference, created_date, movie_name, number_of_tickets, seat_numbers, show_date_time, status, theatre_name, total_price, modified_date, user_id, user_login_id
+'1', '2025-12-20 11:20:33.233100', 'MB1766229633221436', '2025-12-20 11:20:33.233100', 'Avengers Endgame', '1', '[\"A1\"]', NULL, 'CONFIRMED', 'INOX Multiplex', NULL, '2025-12-20 11:20:33.233100', '2', 'john_doe'
+
