@@ -51,10 +51,19 @@ const formatDateSafe = (value: unknown) => {
     const d = new Date(value);
     return isNaN(d.getTime()) ? '-' : d.toLocaleDateString();
   }
-  const str = String(value).trim();
+  let str = String(value).trim();
   if (!str) return '-';
+
+  // Normalize ISO timestamps with >3 fractional digits (e.g., 2025-12-20T16:50:33.2331)
+  const isoMatch = str.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.)(\d+)(Z|[+-]\d{2}:?\d{2})?$/);
+  if (isoMatch && isoMatch[2].length > 3) {
+    const ms3 = isoMatch[2].slice(0, 3);
+    str = `${isoMatch[1]}${ms3}${isoMatch[3] ?? ''}`;
+  }
+
   let d = new Date(str);
   if (!isNaN(d.getTime())) return d.toLocaleDateString();
+
   const ts = Date.parse(str);
   if (!isNaN(ts)) {
     d = new Date(ts);
