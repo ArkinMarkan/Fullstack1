@@ -44,41 +44,6 @@ const TabPanel: React.FC<TabPanelProps> = ({ children, value, index }) => (
   <div hidden={value !== index}>{value === index && <Box sx={{ p: 3 }}>{children}</Box>}</div>
 );
 
-// Safely format dates to avoid runtime errors when bookingDate is null/undefined or in unexpected formats
-const formatDateSafe = (value: unknown) => {
-  if (value === null || value === undefined) return '-';
-  if (typeof value === 'number') {
-    const d = new Date(value);
-    return isNaN(d.getTime()) ? '-' : d.toLocaleDateString();
-  }
-  let str = String(value).trim();
-  if (!str) return '-';
-
-  // Normalize ISO timestamps with >3 fractional digits (e.g., 2025-12-20T16:50:33.2331)
-  const isoMatch = str.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.)(\d+)(Z|[+-]\d{2}:?\d{2})?$/);
-  if (isoMatch && isoMatch[2].length > 3) {
-    const ms3 = isoMatch[2].slice(0, 3);
-    str = `${isoMatch[1]}${ms3}${isoMatch[3] ?? ''}`;
-  }
-
-  let d = new Date(str);
-  if (!isNaN(d.getTime())) return d.toLocaleDateString();
-
-  const ts = Date.parse(str);
-  if (!isNaN(ts)) {
-    d = new Date(ts);
-    return isNaN(d.getTime()) ? '-' : d.toLocaleDateString();
-  }
-  const m = str.match(/^\d{4}-\d{2}-\d{2}$/);
-  if (m) {
-    const [y, mo, da] = str.split('-').map(Number);
-    d = new Date(y, mo - 1, da);
-    return isNaN(d.getTime()) ? '-' : d.toLocaleDateString();
-  }
-  // Fallback: return original string to avoid showing '-'
-  return str;
-};
-
 const AdminDashboard: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -350,7 +315,7 @@ const AdminDashboard: React.FC = () => {
                   <TableCell>{ticket.numberOfTickets}</TableCell>
                   <TableCell>{ticket.seatNumbers.join(', ')}</TableCell>
                   <TableCell>
-                    {formatDateSafe(ticket.bookingDate)}
+                    {new Date(ticket.bookingDate).toLocaleDateString()}
                   </TableCell>
                   <TableCell>
                     <Chip
