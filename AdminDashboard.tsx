@@ -75,7 +75,8 @@ const formatDateSafe = (value: unknown) => {
     d = new Date(y, mo - 1, da);
     return isNaN(d.getTime()) ? '-' : d.toLocaleDateString();
   }
-  return '-';
+  // Fallback: return original string to avoid showing '-'
+  return str;
 };
 
 const AdminDashboard: React.FC = () => {
