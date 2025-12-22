@@ -170,7 +170,7 @@ class MovieBookingIntegrationTest {
         registrationDto.setLoginId("johndoe");
         registrationDto.setPassword("password123");
         registrationDto.setConfirmPassword("password123");
-        registrationDto.setContactNumber("+91-9999999999");
+        registrationDto.setContactNumber("+919999999999");
 
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -192,7 +192,7 @@ class MovieBookingIntegrationTest {
         registrationDto1.setLoginId("johndoe");
         registrationDto1.setPassword("password123");
         registrationDto1.setConfirmPassword("password123");
-        registrationDto1.setContactNumber("+91-9999999999");
+        registrationDto1.setContactNumber("+919999999999");
 
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -207,7 +207,7 @@ class MovieBookingIntegrationTest {
         registrationDto2.setLoginId("johndoe"); // Same loginId
         registrationDto2.setPassword("password456");
         registrationDto2.setConfirmPassword("password456");
-        registrationDto2.setContactNumber("+91-8888888888");
+        registrationDto2.setContactNumber("+918888888888");
 
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -225,7 +225,7 @@ class MovieBookingIntegrationTest {
         registrationDto.setLoginId("johndoe");
         registrationDto.setPassword("password123");
         registrationDto.setConfirmPassword("password123");
-        registrationDto.setContactNumber("+91-9999999999");
+        registrationDto.setContactNumber("+919999999999");
 
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -293,7 +293,7 @@ class MovieBookingIntegrationTest {
         bookingDto.setNumberOfTickets(2);
         bookingDto.setSeatNumbers(Arrays.asList("A1", "A2"));
 
-        mockMvc.perform(post("/api/v1.0/moviebooking/Avengers: Endgame/add")
+        mockMvc.perform(post("/api/v1.0/moviebooking/{moviename}/add", "Avengers: Endgame")
                 .param("theatreName", "PVR Cinemas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(bookingDto)))
@@ -328,9 +328,7 @@ class MovieBookingIntegrationTest {
     @WithMockUser(username = "admin", roles = "ADMIN")
     void testDeleteMovie_Admin() throws Exception {
         Movie movie = movieRepository.findAll().get(0);
-        
-        mockMvc.perform(delete("/api/v1.0/moviebooking/" + movie.getMovieName() + "/delete/" + movie.getId())
-                .param("theatreName", movie.getTheatreName()))
+        mockMvc.perform(delete("/api/v1.0/moviebooking/{moviename}/delete/{theatreName}", movie.getMovieName(), movie.getTheatreName()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true));
     }
@@ -358,7 +356,7 @@ class MovieBookingIntegrationTest {
         registrationDto.setLoginId("johndoe");
         registrationDto.setPassword("password123");
         registrationDto.setConfirmPassword("password123");
-        registrationDto.setContactNumber("+91-9999999999");
+        registrationDto.setContactNumber("+919999999999");
 
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
