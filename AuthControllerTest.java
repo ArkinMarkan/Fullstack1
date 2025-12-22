@@ -11,9 +11,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
@@ -27,6 +29,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Unit tests for AuthController
  */
+@ActiveProfiles("test")
+@AutoConfigureMockMvc(addFilters = false)
 @WebMvcTest(AuthController.class)
 class AuthControllerTest {
     
@@ -141,13 +145,13 @@ class AuthControllerTest {
     @Test
     void forgotPassword_WithValidUsername_ShouldReturnTemporaryPassword() throws Exception {
         // Arrange
-        String tempPassword = "TEMP1234";
-        when(userService.resetPassword(anyString())).thenReturn(tempPassword);
+        String resetToken = "RESET-TOKEN-1234";
+        when(userService.createPasswordResetToken(anyString())).thenReturn(resetToken);
         
         // Act & Assert
         mockMvc.perform(get("/api/v1.0/moviebooking/john_doe/forgot"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data").value(tempPassword));
+                .andExpect(jsonPath("$.data").value(resetToken));
     }
 }
