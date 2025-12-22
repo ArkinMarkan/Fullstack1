@@ -1,24 +1,37 @@
-MovieBookingIntegrationTest
+MovieBookingIntegrationTest (Failed Tests first)
 com.moviebookingapp.integration.MovieBookingIntegrationTest
-testSearchMoviesByName_FullName(com.moviebookingapp.integration.MovieBookingIntegrationTest)
-java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
+testUserRegistration_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
+java.lang.AssertionError: No value at JSON path "$.data.firstName"
 	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
 	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
 	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testSearchMoviesByName_FullName(MovieBookingIntegrationTest.java:263)
+	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testUserRegistration_Success(MovieBookingIntegrationTest.java:181)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data'][0]['movieName']
+Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['firstName']
 
-testSearchMoviesByName_PartialName(com.moviebookingapp.integration.MovieBookingIntegrationTest)
-java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
+testUserLogin_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
+java.lang.AssertionError: No value at JSON path "$.data.loginId"
 	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
 	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
 	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testSearchMoviesByName_PartialName(MovieBookingIntegrationTest.java:272)
+	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testUserLogin_Success(MovieBookingIntegrationTest.java:242)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['loginId']
+
+testGetAllMovies(com.moviebookingapp.integration.MovieBookingIntegrationTest)
+java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
+	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
+	at org.springframework.test.util.JsonPathExpectationsHelper.assertExistsAndReturn(JsonPathExpectationsHelper.java:326)
+	at org.springframework.test.util.JsonPathExpectationsHelper.exists(JsonPathExpectationsHelper.java:190)
+	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$exists$3(JsonPathResultMatchers.java:123)
+	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
+	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testGetAllMovies(MovieBookingIntegrationTest.java:253)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -36,40 +49,27 @@ java.lang.AssertionError: No value at JSON path "$.data.numberOfTickets"
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['numberOfTickets']
 
-testGetAllMovies(com.moviebookingapp.integration.MovieBookingIntegrationTest)
+testSearchMoviesByName_PartialName(com.moviebookingapp.integration.MovieBookingIntegrationTest)
 java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
 	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
-	at org.springframework.test.util.JsonPathExpectationsHelper.assertExistsAndReturn(JsonPathExpectationsHelper.java:326)
-	at org.springframework.test.util.JsonPathExpectationsHelper.exists(JsonPathExpectationsHelper.java:190)
-	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$exists$3(JsonPathResultMatchers.java:123)
+	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
+	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testGetAllMovies(MovieBookingIntegrationTest.java:253)
+	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testSearchMoviesByName_PartialName(MovieBookingIntegrationTest.java:272)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data'][0]['movieName']
 
-testUserLogin_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
-java.lang.AssertionError: No value at JSON path "$.data.loginId"
+testSearchMoviesByName_FullName(com.moviebookingapp.integration.MovieBookingIntegrationTest)
+java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
 	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
 	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
 	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
 	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testUserLogin_Success(MovieBookingIntegrationTest.java:242)
+	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testSearchMoviesByName_FullName(MovieBookingIntegrationTest.java:263)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['loginId']
-
-testUserRegistration_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
-java.lang.AssertionError: No value at JSON path "$.data.firstName"
-	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
-	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
-	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
-	at org.springframework.test.web.servlet.MockMvc$1.andExpect(MockMvc.java:214)
-	at com.moviebookingapp.integration.MovieBookingIntegrationTest.testUserRegistration_Success(MovieBookingIntegrationTest.java:181)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['firstName']
+Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data'][0]['movieName']
 
