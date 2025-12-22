@@ -62,6 +62,13 @@ const AdminDashboard: React.FC = () => {
   const [formLoading, setFormLoading] = useState(false);
   const { user } = useAuth();
 
+  // Safe date formatter for UI rendering
+  const formatDateTime = (value?: string) => {
+    if (!value) return '-';
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? '-' : d.toLocaleString();
+  };
+
   useEffect(() => {
     if (user?.role === 'ADMIN') {
       fetchData();
@@ -315,7 +322,7 @@ const AdminDashboard: React.FC = () => {
                   <TableCell>{ticket.numberOfTickets}</TableCell>
                   <TableCell>{ticket.seatNumbers.join(', ')}</TableCell>
                   <TableCell>
-                    {new Date(ticket.bookingDate).toLocaleDateString()}
+                    {formatDateTime(ticket.bookingDate)}
                   </TableCell>
                   <TableCell>
                     <Chip
