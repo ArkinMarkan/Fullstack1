@@ -50,7 +50,7 @@ java.lang.AssertionError: No value at JSON path "$.data[0].movieName"
 Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data'][0]['movieName']
 
 testUserLogin_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
-java.lang.AssertionError: No value at JSON path "$.data.user.loginId"
+java.lang.AssertionError: No value at JSON path "$.data.loginId"
 	at org.springframework.test.util.JsonPathExpectationsHelper.evaluateJsonPath(JsonPathExpectationsHelper.java:302)
 	at org.springframework.test.util.JsonPathExpectationsHelper.assertValue(JsonPathExpectationsHelper.java:99)
 	at org.springframework.test.web.servlet.result.JsonPathResultMatchers.lambda$value$2(JsonPathResultMatchers.java:111)
@@ -59,7 +59,7 @@ java.lang.AssertionError: No value at JSON path "$.data.user.loginId"
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-Caused by: com.jayway.jsonpath.PathNotFoundException: Missing property in path $['data']['user']
+Caused by: com.jayway.jsonpath.PathNotFoundException: No results for path: $['data']['loginId']
 
 testUserRegistration_Success(com.moviebookingapp.integration.MovieBookingIntegrationTest)
 java.lang.AssertionError: No value at JSON path "$.data.firstName"
