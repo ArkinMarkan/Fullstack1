@@ -175,6 +175,7 @@ class MovieBookingIntegrationTest {
         mockMvc.perform(post("/api/v1.0/moviebooking/register")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(registrationDto)))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.message").value("User registered successfully"))
@@ -236,6 +237,7 @@ class MovieBookingIntegrationTest {
         mockMvc.perform(get("/api/v1.0/moviebooking/login")
                 .param("loginId", "johndoe")
                 .param("password", "password123"))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.token").exists())
@@ -246,6 +248,7 @@ class MovieBookingIntegrationTest {
     @Test
     void testGetAllMovies() throws Exception {
         mockMvc.perform(get("/api/v1.0/moviebooking/all"))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data").isArray())
@@ -257,6 +260,7 @@ class MovieBookingIntegrationTest {
     @Test
     void testSearchMoviesByName_FullName() throws Exception {
         mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/{moviename}", "Avengers: Endgame"))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.length()").value(2))
@@ -266,6 +270,7 @@ class MovieBookingIntegrationTest {
     @Test
     void testSearchMoviesByName_PartialName() throws Exception {
         mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/{moviename}", "Avengers"))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.length()").value(2))
@@ -297,6 +302,7 @@ class MovieBookingIntegrationTest {
                 .param("theatreName", "PVR Cinemas")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(bookingDto)))
+                .andDo(org.springframework.test.web.servlet.result.MockMvcResultHandlers.print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.numberOfTickets").value(2))
