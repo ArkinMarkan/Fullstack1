@@ -1,1 +1,71 @@
-2025-12-20T16:50:33.2331
+{
+    "success": true,
+    "message": "All tickets fetched successfully",
+    "data": [
+        {
+            "id": 1,
+            "movie_name": "Avengers Endgame",
+            "theatre_name": "INOX Multiplex",
+            "number_of_tickets": 1,
+            "seat_numbers": [
+                "A1"
+            ],
+            "user_id": 2,
+            "user_login_id": "john_doe",
+            "status": "CANCELLED",
+            "booking_reference": "MB1766229633221436",
+            "booked_at": "2025-12-20T16:50:33.2331",
+            "created_date": "2025-12-20T16:50:33.2331",
+            "updated_at": "2025-12-20T17:12:07.498429",
+            "active": false,
+            "movie_theatre_key": "Avengers Endgame_INOX Multiplex"
+        },
+        {
+            "id": 2,
+            "movie_name": "Avengers Endgame",
+            "theatre_name": "INOX Multiplex",
+            "number_of_tickets": 1,
+            "seat_numbers": [
+                "A2"
+            ],
+            "user_id": 2,
+            "user_login_id": "john_doe",
+            "status": "CONFIRMED",
+            "booking_reference": "MB1766231073075438",
+            "booked_at": "2025-12-20T17:14:33.080783",
+            "created_date": "2025-12-20T17:14:33.080783",
+            "updated_at": "2025-12-20T17:14:33.080783",
+            "active": true,
+            "movie_theatre_key": "Avengers Endgame_INOX Multiplex"
+        },
+        {
+            "id": 3,
+            "movie_name": "KRISH 2",
+            "theatre_name": "PVR INOX",
+            "number_of_tickets": 2,
+            "seat_numbers": [
+                "A4",
+                "A5"
+            ],
+            "user_id": 3,
+            "user_login_id": "arkin",
+            "status": "CONFIRMED",
+            "booking_reference": "MB1766232480624809",
+            "booked_at": "2025-12-20T17:38:00.630629",
+            "created_date": "2025-12-20T17:38:00.630629",
+            "updated_at": "2025-12-20T17:38:00.630629",
+            "active": true,
+            "movie_theatre_key": "KRISH 2_PVR INOX"
+        }
+    ],
+    "timestamp": "2025-12-22T17:39:58.505999800"
+}
+
+Request URL
+http://localhost:8080/api/v1.0/moviebooking/tickets/all
+Request Method
+GET
+Status Code
+200 OK
+Remote Address
+[::1]:8080
