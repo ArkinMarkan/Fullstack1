@@ -239,7 +239,7 @@ class MovieBookingIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.token").exists())
-                .andExpect(jsonPath("$.data.user.loginId").value("johndoe"));
+                .andExpect(jsonPath("$.data.loginId").value("johndoe"));
     }
 
     // US_02: View & Search Movies Tests
@@ -249,23 +249,23 @@ class MovieBookingIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data").isArray())
-                .andExpect(jsonPath("$.data.length()").value(4)) // 2 movies x 2 theatres
+                .andExpect(jsonPath("$.data.length()").value(4))
                 .andExpect(jsonPath("$.data[0].movieName").exists())
                 .andExpect(jsonPath("$.data[0].theatreName").exists());
     }
 
     @Test
     void testSearchMoviesByName_FullName() throws Exception {
-        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/Avengers: Endgame"))
+        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/{moviename}", "Avengers: Endgame"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.length()").value(2)) // Both theatres
+                .andExpect(jsonPath("$.data.length()").value(2))
                 .andExpect(jsonPath("$.data[0].movieName").value("Avengers: Endgame"));
     }
 
     @Test
     void testSearchMoviesByName_PartialName() throws Exception {
-        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/Avengers"))
+        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/{moviename}", "Avengers"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.length()").value(2))
@@ -274,7 +274,7 @@ class MovieBookingIntegrationTest {
 
     @Test
     void testSearchMoviesByName_NotFound() throws Exception {
-        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/NonExistentMovie"))
+        mockMvc.perform(get("/api/v1.0/moviebooking/movies/search/{moviename}", "NonExistentMovie"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data.length()").value(0));
