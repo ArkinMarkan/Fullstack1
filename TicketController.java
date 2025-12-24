@@ -1,164 +1,296 @@
 package com.moviebookingapp.controller;
 
+import com.moviebookingapp.dto.ApiResponseDto;
+import com.moviebookingapp.dto.TicketBookingDto;
 import com.moviebookingapp.model.Ticket;
-import com.moviebookingapp.repository.MovieRepository;
 import com.moviebookingapp.repository.TicketRepository;
 import com.moviebookingapp.service.TicketService;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-@WebMvcTest(TicketController.class)
-@AutoConfigureMockMvc(addFilters = false)
-class TicketControllerTest {
-
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
-    private TicketService ticketService;
+/**
+ * Controller for ticket booking operations
+ */
+@RestController
+@RequestMapping("/api/v1.0/moviebooking")
+@Tag(name = "Tickets", description = "Ticket booking and management APIs")
+@CrossOrigin(origins = "*", maxAge = 3600)
+public class TicketController {
     
-    @MockBean
-    private com.moviebookingapp.security.JwtAuthenticationFilter jwtAuthenticationFilter;
+    private static final Logger logger = LoggerFactory.getLogger(TicketController.class);
+    
+    @Autowired
+    private TicketService ticketService;
 
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("POST /{moviename}/add books ticket")
-    void bookTickets_user() throws Exception {
-        Ticket t = new Ticket();
-        t.setBookingReference("BR123");
-        Mockito.when(ticketService.bookTicket(Mockito.any(), Mockito.anyString())).thenReturn(t);
-        String body = "{\"movieName\":\"Avatar\",\"theatreName\":\"IMAX\",\"numberOfTickets\":2}";
-        mockMvc.perform(post("/api/v1.0/moviebooking/Avatar/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(body))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.bookingReference").value("BR123"));
+    // Helper methods to safely get current user info without assuming principal type
+    private String getCurrentUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return (authentication != null) ? authentication.getName() : null;
     }
 
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("GET /tickets/user returns current user's tickets")
-    void getUserTickets() throws Exception {
-        Mockito.when(ticketService.getTicketsByUser("john")).thenReturn(List.of());
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/user"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
+    private boolean isCurrentUserAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) return false;
+        for (GrantedAuthority auth : authentication.getAuthorities()) {
+            if ("ROLE_ADMIN".equals(auth.getAuthority())) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Test
-    @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET /{moviename}/tickets returns movie tickets (admin)")
-    void getMovieTickets_admin() throws Exception {
-        Mockito.when(ticketService.getBookedTicketsByMovie("Avatar", "IMAX"))
-                .thenReturn(List.of());
-        mockMvc.perform(get("/api/v1.0/moviebooking/Avatar/tickets").param("theatreName", "IMAX"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
+    /**
+     * Book tickets for a movie
+     * POST /api/v1.0/moviebooking/{moviename}/add
+     */
+    @PostMapping("/{moviename}/add")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Book movie tickets", description = "Book tickets for a specific movie")
+    public ResponseEntity<ApiResponseDto<Ticket>> bookTickets(
+            @PathVariable String moviename,
+            @Valid @RequestBody TicketBookingDto bookingDto) {
+        
+        String userLoginId = getCurrentUsername();
+        if (userLoginId == null) {
+            throw new com.moviebookingapp.exception.AuthorizationException("User is not authenticated");
+        }
+        
+        logger.info("Ticket booking request received for movie: {} by user: {} | payload: {}",
+            moviename, userLoginId, bookingDto);
+        
+        // Ensure movie name matches path parameter
+        bookingDto.setMovieName(moviename);
+        
+        Ticket bookedTicket = ticketService.bookTicket(bookingDto, userLoginId);
+        
+        ApiResponseDto<Ticket> response = ApiResponseDto.success(
+            "Tickets booked successfully", bookedTicket);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get user's booked tickets
+     * GET /api/v1.0/moviebooking/tickets/user
+     */
+    @GetMapping("/tickets/user")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Get user tickets", description = "Get all tickets booked by the current user")
+    public ResponseEntity<ApiResponseDto<List<Ticket>>> getUserTickets() {
+        
+        String userLoginId = getCurrentUsername();
+        logger.info("Request received to fetch tickets for user: {}", userLoginId);
+        
+        List<Ticket> tickets = ticketService.getTicketsByUser(userLoginId);
+        
+        ApiResponseDto<List<Ticket>> response = ApiResponseDto.success(
+            "User tickets fetched successfully", tickets);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get booked tickets for a movie (Admin only)
+     * GET /api/v1.0/moviebooking/{moviename}/tickets
+     */
+    @GetMapping("/{moviename}/tickets")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Get movie tickets", description = "Get all booked tickets for a specific movie (Admin only)")
+    public ResponseEntity<ApiResponseDto<List<Ticket>>> getMovieTickets(
+            @PathVariable String moviename,
+            @RequestParam String theatreName) {
+        
+        logger.info("Request received to fetch tickets for movie: {}, theatre: {}", 
+            moviename, theatreName);
+        
+        List<Ticket> tickets = ticketService.getBookedTicketsByMovie(moviename, theatreName);
+        
+        ApiResponseDto<List<Ticket>> response = ApiResponseDto.success(
+            "Movie tickets fetched successfully", tickets);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get ticket by booking reference
+     * GET /api/v1.0/moviebooking/tickets/{bookingReference}
+     */
+    @GetMapping("/tickets/{bookingReference}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Get ticket by reference", description = "Get ticket details by booking reference")
+    public ResponseEntity<ApiResponseDto<Ticket>> getTicketByReference(
+            @PathVariable String bookingReference) {
+        
+        logger.info("Request received to fetch ticket with reference: {}", bookingReference);
+        
+        Ticket ticket = ticketService.getTicketByBookingReference(bookingReference);
+        
+        // Check if user has access to this ticket (users can only view their own tickets)
+        String currentUsername = getCurrentUsername();
+        boolean isAdmin = isCurrentUserAdmin();
+        if (!isAdmin && ticket != null && ticket.getUserLoginId() != null && !ticket.getUserLoginId().equals(currentUsername)) {
+            throw new com.moviebookingapp.exception.AuthorizationException(
+                "You can only view your own tickets");
+        }
+        
+        ApiResponseDto<Ticket> response = ApiResponseDto.success(
+            "Ticket fetched successfully", ticket);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Cancel ticket
+     * DELETE /api/v1.0/moviebooking/tickets/{bookingReference}/cancel
+     */
+    @DeleteMapping("/tickets/{bookingReference}/cancel")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Cancel ticket", description = "Cancel a booked ticket")
+    public ResponseEntity<ApiResponseDto<Ticket>> cancelTicket(
+            @PathVariable String bookingReference) {
+        
+        String userLoginId = getCurrentUsername();
+        logger.info("Ticket cancellation request received for reference: {} by user: {}", 
+            bookingReference, userLoginId);
+        
+        Ticket cancelledTicket = ticketService.cancelTicket(bookingReference, userLoginId);
+        
+        ApiResponseDto<Ticket> response = ApiResponseDto.success(
+            "Ticket cancelled successfully", cancelledTicket);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get all tickets (Admin only)
+     * GET /api/v1.0/moviebooking/tickets/all
+     */
+    @GetMapping("/tickets/all")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Get all tickets", description = "Get all tickets in the system (Admin only)")
+    public ResponseEntity<ApiResponseDto<List<Ticket>>> getAllTickets() {
+        
+        logger.info("Request received to fetch all tickets");
+        
+        List<Ticket> tickets = ticketService.getAllTickets();
+        
+        ApiResponseDto<List<Ticket>> response = ApiResponseDto.success(
+            "All tickets fetched successfully", tickets);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get booking statistics by movie (Admin only)
+     * GET /api/v1.0/moviebooking/tickets/stats/movies
+     */
+    @GetMapping("/tickets/stats/movies")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Get movie booking statistics", description = "Get booking statistics by movie (Admin only)")
+    public ResponseEntity<ApiResponseDto<List<TicketRepository.MovieBookingStats>>> getMovieBookingStats() {
+        
+        logger.info("Request received for movie booking statistics");
+        
+        List<TicketRepository.MovieBookingStats> stats = ticketService.getBookingStatsByMovie();
+        
+        ApiResponseDto<List<TicketRepository.MovieBookingStats>> response = ApiResponseDto.success(
+            "Movie booking statistics fetched successfully", stats);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get booking statistics by theatre (Admin only)
+     * GET /api/v1.0/moviebooking/tickets/stats/theatres
+     */
+    @GetMapping("/tickets/stats/theatres")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Get theatre booking statistics", description = "Get booking statistics by theatre (Admin only)")
+    public ResponseEntity<ApiResponseDto<List<TicketRepository.TheatreBookingStats>>> getTheatreBookingStats() {
+        
+        logger.info("Request received for theatre booking statistics");
+        
+        List<TicketRepository.TheatreBookingStats> stats = ticketService.getBookingStatsByTheatre();
+        
+        ApiResponseDto<List<TicketRepository.TheatreBookingStats>> response = ApiResponseDto.success(
+            "Theatre booking statistics fetched successfully", stats);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Count booked tickets for a movie
+     * GET /api/v1.0/moviebooking/{moviename}/tickets/count
+     */
+    @GetMapping("/{moviename}/tickets/count")
+    @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "Count movie tickets", description = "Count total booked tickets for a movie (Admin only)")
+    public ResponseEntity<ApiResponseDto<Long>> countMovieTickets(
+            @PathVariable String moviename,
+            @RequestParam String theatreName) {
+        
+        logger.info("Request received to count tickets for movie: {}, theatre: {}", 
+            moviename, theatreName);
+        
+        long count = ticketService.countBookedTickets(moviename, theatreName);
+        
+        ApiResponseDto<Long> response = ApiResponseDto.success(
+            "Ticket count fetched successfully", count);
+        
+        return ResponseEntity.ok(response);
+    }
+    
+    /**
+     * Get user's booked tickets by username (alias to match frontend)
+     * GET /api/v1.0/moviebooking/tickets/{username}
+     */
+    @GetMapping("/tickets/{username}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Get tickets by username", description = "Get all tickets booked by the specified user")
+    public ResponseEntity<ApiResponseDto<List<Ticket>>> getUserTicketsByUsername(
+            @PathVariable String username) {
+        String currentUsername = getCurrentUsername();
+        boolean isAdmin = isCurrentUserAdmin();
+        
+        // Non-admin users can only fetch their own tickets
+        if (!isAdmin && !currentUsername.equalsIgnoreCase(username)) {
+            throw new com.moviebookingapp.exception.AuthorizationException(
+                "You can only view your own tickets");
+        }
+        
+        logger.info("Request received to fetch tickets for username: {} by user: {}", username, currentUsername);
+        List<Ticket> tickets = ticketService.getTicketsByUser(username);
+        ApiResponseDto<List<Ticket>> response = ApiResponseDto.success(
+            "User tickets fetched successfully", tickets);
+        return ResponseEntity.ok(response);
     }
 
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("GET /tickets/{bookingReference} returns a ticket for owner")
-    void getTicketByReference_userOwns() throws Exception {
-        Ticket t = new Ticket();
-        t.setBookingReference("BR123");
-        t.setUserLoginId("john");
-        Mockito.when(ticketService.getTicketByBookingReference("BR123")).thenReturn(t);
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/BR123"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-                
-    }
-
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("DELETE /tickets/{bookingReference}/cancel cancels ticket")
-    void cancelTicket_user() throws Exception {
-        Ticket t = new Ticket();
-        t.setBookingReference("BR123");
-        Mockito.when(ticketService.cancelTicket("BR123", "john")).thenReturn(t);
-        mockMvc.perform(delete("/api/v1.0/moviebooking/tickets/BR123/cancel"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-    }
-
-    @Test
-    @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET /tickets/all returns all tickets (admin)")
-    void getAllTickets_admin() throws Exception {
-        Mockito.when(ticketService.getAllTickets()).thenReturn(List.of());
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/all"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-    }
-
-    @Test
-    @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET /tickets/stats/movies returns movie stats")
-    void getMovieBookingStats_admin() throws Exception {
-        TicketRepository.MovieBookingStats stats = Mockito.mock(TicketRepository.MovieBookingStats.class);
-        Mockito.when(ticketService.getBookingStatsByMovie()).thenReturn(List.of(stats));
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/stats/movies"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-    }
-
-    @Test
-    @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET /tickets/stats/theatres returns theatre stats")
-    void getTheatreBookingStats_admin() throws Exception {
-        TicketRepository.TheatreBookingStats stats = Mockito.mock(TicketRepository.TheatreBookingStats.class); 
-        Mockito.when(ticketService.getBookingStatsByTheatre()).thenReturn(List.of(stats));
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/stats/theatres"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-    }
-
-    @Test
-    @WithMockUser(roles = {"ADMIN"})
-    @DisplayName("GET /{moviename}/tickets/count returns count")
-    void countMovieTickets_admin() throws Exception {
-        Mockito.when(ticketService.countBookedTickets("Avatar", "IMAX")).thenReturn(5L);
-        mockMvc.perform(get("/api/v1.0/moviebooking/Avatar/tickets/count").param("theatreName", "IMAX"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data").value(5));
-    }
-
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("GET /tickets/{username} returns tickets for same user")
-    void getUserTicketsByUsername_userSelf() throws Exception {
-        Mockito.when(ticketService.getTicketsByUser("john")).thenReturn(List.of());
-        mockMvc.perform(get("/api/v1.0/moviebooking/tickets/john"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
-    }
-
-    @Test
-    @WithMockUser(username = "john", roles = {"USER"})
-    @DisplayName("DELETE /tickets/cancel/{bookingReference} cancels via alias")
-    void cancelTicketAlias_user() throws Exception {
-        Ticket t = new Ticket();
-        t.setBookingReference("BR123");
-        Mockito.when(ticketService.cancelTicket("BR123", "john")).thenReturn(t);
-        mockMvc.perform(delete("/api/v1.0/moviebooking/tickets/cancel/BR123"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.success").value(true));
+    /**
+     * Cancel ticket (alias to match frontend path)
+     * DELETE /api/v1.0/moviebooking/tickets/cancel/{bookingReference}
+     */
+    @DeleteMapping("/tickets/cancel/{bookingReference}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @Operation(summary = "Cancel ticket (alias)", description = "Cancel a booked ticket using alias path")
+    public ResponseEntity<ApiResponseDto<Ticket>> cancelTicketAlias(
+            @PathVariable String bookingReference) {
+        String userLoginId = getCurrentUsername();
+        logger.info("Alias cancel endpoint hit for reference: {} by user: {}", bookingReference, userLoginId);
+        Ticket cancelledTicket = ticketService.cancelTicket(bookingReference, userLoginId);
+        ApiResponseDto<Ticket> response = ApiResponseDto.success(
+            "Ticket cancelled successfully", cancelledTicket);
+        return ResponseEntity.ok(response);
     }
 }
