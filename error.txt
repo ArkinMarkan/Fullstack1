@@ -1,3 +1,7 @@
+    @MockBean
+    private com.moviebookingapp.security.JwtAuthenticationFilter jwtAuthenticationFilter;
+
+
 MovieControllerTest
 com.moviebookingapp.controller.MovieControllerTest
 getMovieStatistics_admin(com.moviebookingapp.controller.MovieControllerTest)
