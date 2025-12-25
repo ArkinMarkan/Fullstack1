@@ -137,11 +137,11 @@ class TicketRepositoryTest {
     @Test
     @DisplayName("getUserBookingSummary should return aggregate values")
     void getUserBookingSummary() {
-        Object[] summary = ticketRepository.getUserBookingSummary(1L);
+        TicketRepository.UserBookingSummary summary = ticketRepository.getUserBookingSummary(1L);
         assertThat(summary).isNotNull();
-        assertThat(((Long) summary[0])).isEqualTo(2L); // totalBookings
-        assertThat(((Long) summary[1])).isEqualTo(6L); // totalTickets
-        assertThat(summary[2]).isInstanceOf(BigDecimal.class); // totalSpent
+        assertThat(summary.getTotalBookings()).isEqualTo(2L); // totalBookings
+        assertThat(summary.getTotalTickets()).isEqualTo(6L); // totalTickets
+        assertThat(summary.getTotalSpent()).isInstanceOf(BigDecimal.class); // totalSpent
     }
 
     @Test
