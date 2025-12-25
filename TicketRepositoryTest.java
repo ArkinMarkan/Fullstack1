@@ -39,6 +39,9 @@ class TicketRepositoryTest {
         t1.setTotalPrice(new BigDecimal("20.00"));
         t1.setStatus(Ticket.TicketStatus.CONFIRMED);
         t1.setBookedAt(LocalDateTime.now().minusDays(5));
+        // Set mandatory fields for validation
+        t1.setSeatNumbers(List.of("A1", "A2"));
+        t1.setBookingReference("BR-T1");
         ticketRepository.save(t1);
 
         t2 = new Ticket();
@@ -50,6 +53,9 @@ class TicketRepositoryTest {
         t2.setTotalPrice(new BigDecimal("30.00"));
         t2.setStatus(Ticket.TicketStatus.CANCELLED);
         t2.setBookedAt(LocalDateTime.now().minusDays(2));
+        // Set mandatory fields for validation
+        t2.setSeatNumbers(List.of("B1", "B2", "B3"));
+        t2.setBookingReference("BR-T2");
         ticketRepository.save(t2);
 
         t3 = new Ticket();
@@ -61,6 +67,9 @@ class TicketRepositoryTest {
         t3.setTotalPrice(new BigDecimal("40.00"));
         t3.setStatus(Ticket.TicketStatus.CONFIRMED);
         t3.setBookedAt(LocalDateTime.now().minusDays(1));
+        // Set mandatory fields for validation
+        t3.setSeatNumbers(List.of("C1", "C2", "C3", "C4"));
+        t3.setBookingReference("BR-T3");
         ticketRepository.save(t3);
     }
 
