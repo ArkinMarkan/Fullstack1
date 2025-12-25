@@ -81,9 +81,9 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("search methods should be case-insensitive partial matches")
     void caseInsensitiveSearch() {
-        List<Movie> nameMatches = movieRepository.findByMovieNameContainingIgnoreCase("ava");
+        List<Movie> nameMatches = movieRepository.findByMovieNameContainingIgnoreCase("Ant");
         assertThat(nameMatches).hasSize(2);
-        List<Movie> theatreMatches = movieRepository.findByTheatreNameContainingIgnoreCase("reg");
+        List<Movie> theatreMatches = movieRepository.findByTheatreNameContainingIgnoreCase("Cine");
         assertThat(theatreMatches).hasSize(2);
     }
 
@@ -111,14 +111,14 @@ class MovieRepositoryTest {
     @DisplayName("searchMovies should search across name, theatre, genre, language")
     void searchMovies() {
         List<Movie> res = movieRepository.searchMovies("drama");
-        assertThat(res).extracting(Movie::getMovieName).contains("Oppenheimer");
-        assertThat(movieRepository.searchMovies("amc")).extracting(Movie::getTheatreName).contains("AMC");
+        assertThat(res).extracting(Movie::getMovieName).contains("RRR");
+        assertThat(movieRepository.searchMovies("RRR")).extracting(Movie::getTheatreName).contains("Cinepolis");
     }
 
     @Test
     @DisplayName("findDistinct names should return unique values")
     void distinctValues() {
-        assertThat(movieRepository.findDistinctMovieNames()).contains("Avatar", "Oppenheimer");
-        assertThat(movieRepository.findDistinctTheatreNames()).contains("Regal", "AMC");
+        assertThat(movieRepository.findDistinctMovieNames()).contains("AntMan", "Avengers Endgame");
+        assertThat(movieRepository.findDistinctTheatreNames()).contains("INOX", "INOX Multiplex");
     }
 }
