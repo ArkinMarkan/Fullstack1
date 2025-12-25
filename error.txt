@@ -21,7 +21,7 @@ org.springframework.dao.InvalidDataAccessApiUsageException: Expecting a SELECT q
 	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:249)
-	at jdk.proxy2/jdk.proxy2.$Proxy154.deleteCancelledTicketsOlderThan(Unknown Source)
+	at jdk.proxy2/jdk.proxy2.$Proxy155.deleteCancelledTicketsOlderThan(Unknown Source)
 	at com.moviebookingapp.repository.TicketRepositoryTest.deleteCancelledTicketsOlderThan(TicketRepositoryTest.java:184)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
