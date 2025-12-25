@@ -1,1 +1,1 @@
-{ "first_name": "Jack", "last_name": "Daniel", "email": "jack.doe@example.com", "login_id": "john_doe", "password": "Password@123", "confirm_password": "Password@123", "contact_number": "+11234567890" }
+{ "first_name": "Jack", "last_name": "Daniel", "email": "jack.doe@example.com", "login_id": "jack_daniel", "password": "Password@123", "confirm_password": "Password@123", "contact_number": "+11234567890" }
