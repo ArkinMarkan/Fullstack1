@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureDataJpa;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @ActiveProfiles("test")
 @EntityScan(basePackages = "com.moviebookingapp.model")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
+@AutoConfigureDataJpa
 class PasswordResetTokenRepositoryTest {
 
     @Autowired
@@ -30,7 +30,7 @@ class PasswordResetTokenRepositoryTest {
     @Test
     @DisplayName("findByToken should return existing token")
     void findByToken() {
-        // Persist a user to satisfy NOT NULL user_id
+        // Persist a user to satisfy FK/not-null user_id
         User u = new User();
         u.setLoginId("user_for_token");
         u.setEmail("user.token@example.com");
@@ -38,20 +38,21 @@ class PasswordResetTokenRepositoryTest {
         u.setLastName("User");
         u.setRole(User.Role.USER);
         u.setEnabled(true);
-        u = userRepository.save(u); // ensure ID is generated
+        userRepository.save(u);
 
         PasswordResetToken token = new PasswordResetToken();
         token.setToken("reset-123");
         token.setExpiresAt(LocalDateTime.now().plusHours(1));
         token.setCreatedAt(LocalDateTime.now());
         token.setUsed(false);
-        // If entity uses primitive foreign key column, set it directly
-        token.setUserId(u.getId());
+        // Associate user (ensures non-null user_id)
+        // If entity has a 'user' relation, set it; otherwise ensure correct setter exists.
+        token.setUser(u);
         repository.save(token);
 
         Optional<PasswordResetToken> found = repository.findByToken("reset-123");
         assertThat(found).isPresent();
-        assertThat(found.get().getUserId()).isEqualTo(u.getId());
+        assertThat(found.get().getUser().getLoginId()).isEqualTo("user_for_token");
     }
 
     @Test
