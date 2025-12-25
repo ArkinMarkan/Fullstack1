@@ -30,7 +30,7 @@ class PasswordResetTokenRepositoryTest {
     @Test
     @DisplayName("findByToken should return existing token")
     void findByToken() {
-        // Persist a user to satisfy FK/not-null user_id
+        // Persist a user to satisfy NOT NULL user_id
         User u = new User();
         u.setLoginId("user_for_token");
         u.setEmail("user.token@example.com");
@@ -38,21 +38,20 @@ class PasswordResetTokenRepositoryTest {
         u.setLastName("User");
         u.setRole(User.Role.USER);
         u.setEnabled(true);
-        userRepository.save(u);
+        u = userRepository.save(u); // ensure ID is generated
 
         PasswordResetToken token = new PasswordResetToken();
         token.setToken("reset-123");
         token.setExpiresAt(LocalDateTime.now().plusHours(1));
         token.setCreatedAt(LocalDateTime.now());
         token.setUsed(false);
-        // Associate user (ensures non-null user_id)
-        // If entity has a 'user' relation, set it; otherwise ensure correct setter exists.
-        token.setUser(u);
+        // If entity uses primitive foreign key column, set it directly
+        token.setUserId(u.getId());
         repository.save(token);
 
         Optional<PasswordResetToken> found = repository.findByToken("reset-123");
         assertThat(found).isPresent();
-        assertThat(found.get().getUser().getLoginId()).isEqualTo("user_for_token");
+        assertThat(found.get().getUserId()).isEqualTo(u.getId());
     }
 
     @Test
