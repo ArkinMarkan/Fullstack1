@@ -1,2 +1,3 @@
 { "first_name": "Jack", "last_name": "Daniel", "email": "jack.doe@example.com", "login_id": "jack_daniel", "password": "Password@123", "confirm_password": "Password@123", "contact_number": "+11234567890" }
 { "movie_name": "Interstellar", "theatre_name": "PVR Cinemas", "total_tickets": 120 }
+{ "theatre_name": "PVR Cinemas", "number_of_tickets": 3, "seat_numbers": ["B10", "B11", "B12"] }
