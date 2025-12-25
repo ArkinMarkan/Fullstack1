@@ -1,13 +1,1 @@
-TicketServiceTest
-com.moviebookingapp.service.TicketServiceTest
-bookTicket_NotEnoughTickets_ThrowsTicketBookingException(com.moviebookingapp.service.TicketServiceTest)
-org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
-Unnecessary stubbings detected.
-Clean & maintainable test code requires zero unnecessary code.
-Following stubbings are unnecessary (click to navigate to relevant line of code):
-  1. -> at com.moviebookingapp.service.TicketServiceTest.bookTicket_NotEnoughTickets_ThrowsTicketBookingException(TicketServiceTest.java:124)
-Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
-	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:192)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
-
+{ "first_name": "John", "last_name": "Doe", "email": "john.doe@example.com", "login_id": "john_doe", "password": "Password@123", "confirm_password": "Password@123", "contact_number": "+11234567890" }
