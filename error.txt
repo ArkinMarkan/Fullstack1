@@ -1,23 +1,13 @@
-2025-12-25 20:20:51 - Authorizing method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
-2025-12-25 20:20:51 - Authorized method invocation ReflectiveMethodInvocation: public org.springframework.http.ResponseEntity com.moviebookingapp.controller.TicketController.bookTickets(java.lang.String,com.moviebookingapp.dto.TicketBookingDto); target is of class [com.moviebookingapp.controller.TicketController]
-2025-12-25 20:20:51 - Ticket booking request received for movie: AntMan by user: karan | payload: TicketBookingDto{movieName='AntMan', theatreName='INOX', numberOfTickets=1, seatNumbers=[A5]}
-2025-12-25 20:20:51 - Booking 1 tickets for movie: AntMan at theatre: INOX by user: karan
-2025-12-25 20:20:51 - select t1_0.id,t1_0.booking_date,t1_0.booking_reference,t1_0.created_date,t1_0.movie_name,t1_0.number_of_tickets,t1_0.seat_numbers,t1_0.show_date_time,t1_0.status,t1_0.theatre_name,t1_0.total_price,t1_0.modified_date,t1_0.user_id,t1_0.user_login_id from tickets t1_0 where t1_0.movie_name=? and t1_0.theatre_name=? and t1_0.status='CONFIRMED' and t1_0.seat_numbers is not null
-2025-12-25 20:20:51 - insert into tickets (booking_date,booking_reference,created_date,movie_name,number_of_tickets,seat_numbers,show_date_time,status,theatre_name,total_price,modified_date,user_id,user_login_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)
-2025-12-25 20:20:51 - SQL Error: 1048, SQLState: 23000
-2025-12-25 20:20:51 - Column 'booking_date' cannot be null
+TicketServiceTest
+com.moviebookingapp.service.TicketServiceTest
+bookTicket_NotEnoughTickets_ThrowsTicketBookingException(com.moviebookingapp.service.TicketServiceTest)
+org.mockito.exceptions.misusing.UnnecessaryStubbingException: 
+Unnecessary stubbings detected.
+Clean & maintainable test code requires zero unnecessary code.
+Following stubbings are unnecessary (click to navigate to relevant line of code):
+  1. -> at com.moviebookingapp.service.TicketServiceTest.bookTicket_NotEnoughTickets_ThrowsTicketBookingException(TicketServiceTest.java:124)
+Please remove unnecessary stubbings or use 'lenient' strictness. More info: javadoc for UnnecessaryStubbingException class.
+	at org.mockito.junit.jupiter.MockitoExtension.afterEach(MockitoExtension.java:192)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
 
-
-{success: false,…}
-message
-: 
-"An unexpected error occurred: could not execute statement [Column 'booking_date' cannot be null] [insert into tickets (booking_date,booking_reference,created_date,movie_name,number_of_tickets,seat_numbers,show_date_time,status,theatre_name,total_price,modified_date,user_id,user_login_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)]; SQL [insert into tickets (booking_date,booking_reference,created_date,movie_name,number_of_tickets,seat_numbers,show_date_time,status,theatre_name,total_price,modified_date,user_id,user_login_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?)]; constraint [null]"
-path
-: 
-"uri=/api/v1.0/moviebooking/AntMan/add"
-success
-: 
-false
-timestamp
-: 
-"2025-12-25T20:22:07.889295100"
