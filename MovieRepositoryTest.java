@@ -6,6 +6,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.test.context.ActiveProfiles;
 
 import java.util.List;
@@ -15,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ActiveProfiles("test")
+@EntityScan(basePackages = "com.moviebookingapp.model")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 class MovieRepositoryTest {
 
     @Autowired
@@ -81,9 +85,9 @@ class MovieRepositoryTest {
     @Test
     @DisplayName("search methods should be case-insensitive partial matches")
     void caseInsensitiveSearch() {
-        List<Movie> nameMatches = movieRepository.findByMovieNameContainingIgnoreCase("Ant");
+        List<Movie> nameMatches = movieRepository.findByMovieNameContainingIgnoreCase("ava");
         assertThat(nameMatches).hasSize(2);
-        List<Movie> theatreMatches = movieRepository.findByTheatreNameContainingIgnoreCase("Cine");
+        List<Movie> theatreMatches = movieRepository.findByTheatreNameContainingIgnoreCase("reg");
         assertThat(theatreMatches).hasSize(2);
     }
 
@@ -111,14 +115,14 @@ class MovieRepositoryTest {
     @DisplayName("searchMovies should search across name, theatre, genre, language")
     void searchMovies() {
         List<Movie> res = movieRepository.searchMovies("drama");
-        assertThat(res).extracting(Movie::getMovieName).contains("RRR");
-        assertThat(movieRepository.searchMovies("RRR")).extracting(Movie::getTheatreName).contains("Cinepolis");
+        assertThat(res).extracting(Movie::getMovieName).contains("Oppenheimer");
+        assertThat(movieRepository.searchMovies("amc")).extracting(Movie::getTheatreName).contains("AMC");
     }
 
     @Test
     @DisplayName("findDistinct names should return unique values")
     void distinctValues() {
-        assertThat(movieRepository.findDistinctMovieNames()).contains("AntMan", "Avengers Endgame");
-        assertThat(movieRepository.findDistinctTheatreNames()).contains("INOX", "INOX Multiplex");
+        assertThat(movieRepository.findDistinctMovieNames()).contains("Avatar", "Oppenheimer");
+        assertThat(movieRepository.findDistinctTheatreNames()).contains("Regal", "AMC");
     }
 }
