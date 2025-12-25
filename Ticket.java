@@ -56,7 +56,7 @@ public class Ticket {
 
     // Store seat numbers as JSON in tickets.seat_numbers
     @NotNull(message = "Seat numbers are mandatory")
-    @Column(name = "seat_numbers", columnDefinition = "JSON")
+    @Column(name = "seat_numbers", columnDefinition = "TEXT")
     @Convert(converter = SeatNumbersJsonConverter.class)
     private List<String> seatNumbers;
     
